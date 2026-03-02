@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Data Files
+data/metadata.db
+data/metadata.db-journal
+data/raw_docs/**/*.pdf
+data/raw_images/**/*
+data/processed_chunks/**/*
+data/metric_maps/**/*
+
+# Keep directory structure
+!data/raw_docs/.gitkeep
+!data/raw_docs/naac/.gitkeep
+!data/raw_docs/nba/.gitkeep
+!data/raw_images/.gitkeep
+!data/processed_chunks/.gitkeep
+!data/metric_maps/.gitkeep
+
+# Indices
+indexes/*.index
+indexes/*.pkl
+indexes/*.faiss
+
+# Logs and Output
+*.log
+*.txt
+!requirements.txt
+!docs/*.txt
+!docs/*.log
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Documentation builds
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# OS
+Thumbs.db
+.DS_Store
+*.bak
+*.tmp
+
+# Model files (if downloaded locally)
+models/
+*.bin
+*.safetensors
+*.onnx
+
+# Temporary files
+temp/
+tmp/
+*.temp

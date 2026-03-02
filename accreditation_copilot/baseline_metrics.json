@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-03-01T16:45:38.844994",
+  "validation_results": {
+    "cuda": true,
+    "faiss_gpu": false,
+    "faiss_cpu": true,
+    "embedder": true,
+    "reranker": true,
+    "groq": true,
+    "groq_key_count": 2,
+    "llava": true,
+    "langsmith": false,
+    "project_structure": false
+  },
+  "vram_snapshots": {
+    "baseline": 0.0,
+    "after_embedder": 0.41770458221435547,
+    "after_reranker": 1.4535746574401855
+  },
+  "latency_measurements": {
+    "embedding_single": 269.5274353027344,
+    "embedding_batch32": 14.82248306274414,
+    "reranker_10pairs": 95.6261157989502,
+    "groq_completion": 311.657190322876
+  }
+}

@@ -1,0 +1,27 @@
+# Core
+langchain==0.3.18
+langchain-community==0.3.18
+langchain-groq==0.3.2
+langsmith==0.2.11
+pydantic==2.12.5
+python-dotenv==1.2.1
+
+# Embedding & Retrieval
+torch==2.5.1
+transformers==5.2.0
+sentence-transformers==5.2.3
+faiss-gpu==1.13.2
+rank-bm25==0.2.2
+
+# OCR & PDF
+pymupdf==1.25.5
+pytesseract==0.3.14
+opencv-python==4.11.0.86
+pillow==12.0.0
+
+# Utilities
+pyyaml==6.0.3
+numpy==2.3.5
+scikit-learn==1.8.0
+tqdm==4.67.3
+tiktoken==0.9.0
