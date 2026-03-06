@@ -1,24 +1,26 @@
 """
 Hybrid Retriever - Phase 2
 Combines FAISS and BM25 retrieval with score fusion.
+
+Performance Fix: Uses ModelManager for shared model instances.
 """
 
 import re
 import numpy as np
 from typing import List, Dict
-from sentence_transformers import SentenceTransformer
-import torch
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from retrieval.index_loader import IndexLoader
 from retrieval.score_fusion import ScoreFusion
+from models.model_manager import get_model_manager
 
 
 class HybridRetriever:
     """
     Hybrid retrieval combining dense (FAISS) and sparse (BM25) search.
+    Uses shared models from ModelManager for performance.
     """
     
     # Index mapping
@@ -30,13 +32,20 @@ class HybridRetriever:
         ('NBA', 'prequalifier'): 'nba_prequalifier'
     }
     
-    def __init__(self, model_name: str = 'BAAI/bge-base-en-v1.5'):
+    def __init__(self, model_manager=None):
+        """
+        Initialize hybrid retriever with shared models.
+        
+        Args:
+            model_manager: Optional ModelManager instance (for testing)
+        """
         self.index_loader = IndexLoader()
         self.score_fusion = ScoreFusion()
         
-        # Load embedding model
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.model = SentenceTransformer(model_name, device=device)
+        # Get shared embedder from ModelManager
+        if model_manager is None:
+            model_manager = get_model_manager()
+        self.model = model_manager.get_embedder()
     
     def _tokenize(self, text: str) -> List[str]:
         """Simple tokenization for BM25."""

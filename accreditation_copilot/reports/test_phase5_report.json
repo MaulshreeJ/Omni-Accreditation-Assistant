@@ -1,0 +1,615 @@
+{
+  "report_metadata": {
+    "report_type": "Accreditation Compliance Audit",
+    "framework": "NAAC",
+    "institution": "Test University",
+    "audit_date": "2026-03-06T01:01:26.085577",
+    "generated_at": "2026-03-06T01:01:26.086576",
+    "report_version": "1.0"
+  },
+  "executive_summary": {
+    "total_criteria": 5,
+    "compliant": 0,
+    "partial": 0,
+    "weak": 5,
+    "no_evidence": 0,
+    "compliance_rate": 0.0,
+    "overall_status": "Critical"
+  },
+  "criteria_evaluations": [
+    {
+      "criterion": "3.2.1",
+      "description": "Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the last five years",
+      "compliance_status": "Weak",
+      "confidence_score": 0.0,
+      "coverage_ratio": 0.0,
+      "dimensions_covered": [],
+      "dimensions_missing": [],
+      "institution_evidence_available": true,
+      "evidence_count": 8,
+      "institution_evidence_count": 5,
+      "explanation": "No explanation available",
+      "top_evidence_sources": [
+        {
+          "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "2b630dc7-00ff-4b17-bfd4-470950700fa6",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 91,
+          "source_type": "framework",
+          "criterion": "6.4.3",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "40cf700c-4ace-47a8-8468-cb63bcdf45a0",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 124,
+          "source_type": "framework",
+          "criterion": "7.1.10",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "9f8bf978-196b-4634-a8f0-258186f689d2",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 91,
+          "source_type": "framework",
+          "criterion": "6.4.2",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        }
+      ],
+      "dimension_grounding": [],
+      "gaps_identified": [
+        {
+          "gap_type": "low_coverage",
+          "severity": "high",
+          "description": "Low dimension coverage: 0.0%",
+          "coverage_ratio": 0.0,
+          "recommendation": "Expand evidence to cover more required dimensions"
+        },
+        {
+          "gap_type": "low_confidence",
+          "severity": "medium",
+          "description": "Low confidence score: 0.0%",
+          "confidence_score": 0.0,
+          "recommendation": "Provide more detailed or higher-quality evidence"
+        },
+        {
+          "gap_type": "weak_evidence",
+          "severity": "medium",
+          "description": "Weak evidence quality: 0.0%",
+          "evidence_quality": 0.0,
+          "recommendation": "Improve evidence specificity and relevance"
+        }
+      ],
+      "evidence_strength": {
+        "overall_strength": "Weak",
+        "strong_count": 0,
+        "moderate_count": 1,
+        "weak_count": 4,
+        "per_chunk_strength": {
+          "13a11009-9259-4066-b882-aecee6810184": {
+            "strength": "Moderate",
+            "score": 0.44404688532716774,
+            "dimensions_covered": 0
+          },
+          "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+            "strength": "Weak",
+            "score": 0.31691767275358756,
+            "dimensions_covered": 0
+          },
+          "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+            "strength": "Weak",
+            "score": 0.08001858517087158,
+            "dimensions_covered": 0
+          },
+          "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+            "strength": "Weak",
+            "score": 0.03190259900252004,
+            "dimensions_covered": 0
+          },
+          "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+            "strength": "Weak",
+            "score": 0.0,
+            "dimensions_covered": 0
+          }
+        }
+      }
+    },
+    {
+      "criterion": "3.3.1",
+      "description": "Number of research papers published per teacher in the Journals notified on UGC care list during the last five years",
+      "compliance_status": "Weak",
+      "confidence_score": 0.0,
+      "coverage_ratio": 0.0,
+      "dimensions_covered": [],
+      "dimensions_missing": [],
+      "institution_evidence_available": true,
+      "evidence_count": 8,
+      "institution_evidence_count": 5,
+      "explanation": "No explanation available",
+      "top_evidence_sources": [
+        {
+          "chunk_id": "99d576d7-9555-4ce8-bcfe-27b24987c947",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 111,
+          "source_type": "framework",
+          "criterion": "7.1.10",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "3de8ab0e-da23-4b8f-aad2-8b288b693ebe",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "821dbe66-7459-483e-ac02-fc7d0d559a09",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 68,
+          "source_type": "framework",
+          "criterion": "3.4.5",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "7f3d6d82-88ac-4521-9091-46c6869b4a90",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        }
+      ],
+      "dimension_grounding": [],
+      "gaps_identified": [
+        {
+          "gap_type": "low_coverage",
+          "severity": "high",
+          "description": "Low dimension coverage: 0.0%",
+          "coverage_ratio": 0.0,
+          "recommendation": "Expand evidence to cover more required dimensions"
+        },
+        {
+          "gap_type": "low_confidence",
+          "severity": "medium",
+          "description": "Low confidence score: 0.0%",
+          "confidence_score": 0.0,
+          "recommendation": "Provide more detailed or higher-quality evidence"
+        },
+        {
+          "gap_type": "weak_evidence",
+          "severity": "medium",
+          "description": "Weak evidence quality: 0.0%",
+          "evidence_quality": 0.0,
+          "recommendation": "Improve evidence specificity and relevance"
+        }
+      ],
+      "evidence_strength": {
+        "overall_strength": "Weak",
+        "strong_count": 0,
+        "moderate_count": 0,
+        "weak_count": 5,
+        "per_chunk_strength": {
+          "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+            "strength": "Weak",
+            "score": 0.10561563181787909,
+            "dimensions_covered": 0
+          },
+          "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+            "strength": "Weak",
+            "score": 0.05730848076460894,
+            "dimensions_covered": 0
+          },
+          "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+            "strength": "Weak",
+            "score": 0.05179467903750205,
+            "dimensions_covered": 0
+          },
+          "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+            "strength": "Weak",
+            "score": 0.012346908307718984,
+            "dimensions_covered": 0
+          },
+          "13a11009-9259-4066-b882-aecee6810184": {
+            "strength": "Weak",
+            "score": 0.0,
+            "dimensions_covered": 0
+          }
+        }
+      }
+    },
+    {
+      "criterion": "3.4.1",
+      "description": "Extension activities are carried out in the neighborhood community, sensitizing students to social issues, for their holistic development, and impact thereof during the last five years",
+      "compliance_status": "Weak",
+      "confidence_score": 0.0,
+      "coverage_ratio": 0.0,
+      "dimensions_covered": [],
+      "dimensions_missing": [],
+      "institution_evidence_available": true,
+      "evidence_count": 8,
+      "institution_evidence_count": 5,
+      "explanation": "No explanation available",
+      "top_evidence_sources": [
+        {
+          "chunk_id": "0b7485fc-c215-490b-8785-730e76c270f9",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 14,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "a277bebb-a6dd-43ff-8a81-82ba8349ba44",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 72,
+          "source_type": "framework",
+          "criterion": "3.6.3",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "754f0751-2931-472d-9b9f-6ab293bc7612",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 19,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "7f3d6d82-88ac-4521-9091-46c6869b4a90",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        }
+      ],
+      "dimension_grounding": [],
+      "gaps_identified": [
+        {
+          "gap_type": "low_coverage",
+          "severity": "high",
+          "description": "Low dimension coverage: 0.0%",
+          "coverage_ratio": 0.0,
+          "recommendation": "Expand evidence to cover more required dimensions"
+        },
+        {
+          "gap_type": "low_confidence",
+          "severity": "medium",
+          "description": "Low confidence score: 0.0%",
+          "confidence_score": 0.0,
+          "recommendation": "Provide more detailed or higher-quality evidence"
+        },
+        {
+          "gap_type": "weak_evidence",
+          "severity": "medium",
+          "description": "Weak evidence quality: 0.0%",
+          "evidence_quality": 0.0,
+          "recommendation": "Improve evidence specificity and relevance"
+        }
+      ],
+      "evidence_strength": {
+        "overall_strength": "Weak",
+        "strong_count": 0,
+        "moderate_count": 0,
+        "weak_count": 5,
+        "per_chunk_strength": {
+          "13a11009-9259-4066-b882-aecee6810184": {
+            "strength": "Weak",
+            "score": 0.0662284738966477,
+            "dimensions_covered": 0
+          },
+          "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+            "strength": "Weak",
+            "score": 0.038674453083869804,
+            "dimensions_covered": 0
+          },
+          "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+            "strength": "Weak",
+            "score": 0.020176302086973172,
+            "dimensions_covered": 0
+          },
+          "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+            "strength": "Weak",
+            "score": 0.003238705335566989,
+            "dimensions_covered": 0
+          },
+          "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+            "strength": "Weak",
+            "score": 0.0,
+            "dimensions_covered": 0
+          }
+        }
+      }
+    },
+    {
+      "criterion": "3.4.2",
+      "description": "Awards and recognitions received for extension activities from government / government recognised bodies",
+      "compliance_status": "Weak",
+      "confidence_score": 0.0,
+      "coverage_ratio": 0.0,
+      "dimensions_covered": [],
+      "dimensions_missing": [],
+      "institution_evidence_available": true,
+      "evidence_count": 8,
+      "institution_evidence_count": 5,
+      "explanation": "No explanation available",
+      "top_evidence_sources": [
+        {
+          "chunk_id": "e2ad26aa-2767-494c-9b3e-0e1c7a83c705",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 113,
+          "source_type": "framework",
+          "criterion": "7.1.10",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "a277bebb-a6dd-43ff-8a81-82ba8349ba44",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 72,
+          "source_type": "framework",
+          "criterion": "3.6.3",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "cffdec52-7e23-4935-b5a1-60c8aeed3b37",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 65,
+          "source_type": "framework",
+          "criterion": "3.3.3",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "3de8ab0e-da23-4b8f-aad2-8b288b693ebe",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        }
+      ],
+      "dimension_grounding": [],
+      "gaps_identified": [
+        {
+          "gap_type": "low_coverage",
+          "severity": "high",
+          "description": "Low dimension coverage: 0.0%",
+          "coverage_ratio": 0.0,
+          "recommendation": "Expand evidence to cover more required dimensions"
+        },
+        {
+          "gap_type": "low_confidence",
+          "severity": "medium",
+          "description": "Low confidence score: 0.0%",
+          "confidence_score": 0.0,
+          "recommendation": "Provide more detailed or higher-quality evidence"
+        },
+        {
+          "gap_type": "weak_evidence",
+          "severity": "medium",
+          "description": "Weak evidence quality: 0.0%",
+          "evidence_quality": 0.0,
+          "recommendation": "Improve evidence specificity and relevance"
+        }
+      ],
+      "evidence_strength": {
+        "overall_strength": "Weak",
+        "strong_count": 0,
+        "moderate_count": 0,
+        "weak_count": 5,
+        "per_chunk_strength": {
+          "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+            "strength": "Weak",
+            "score": 0.012902915960840708,
+            "dimensions_covered": 0
+          },
+          "13a11009-9259-4066-b882-aecee6810184": {
+            "strength": "Weak",
+            "score": 0.0024377586988973765,
+            "dimensions_covered": 0
+          },
+          "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+            "strength": "Weak",
+            "score": 0.0019001970782599258,
+            "dimensions_covered": 0
+          },
+          "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+            "strength": "Weak",
+            "score": 0.0015430119601225047,
+            "dimensions_covered": 0
+          },
+          "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+            "strength": "Weak",
+            "score": 0.0,
+            "dimensions_covered": 0
+          }
+        }
+      }
+    },
+    {
+      "criterion": "3.5.1",
+      "description": "Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
+      "compliance_status": "Weak",
+      "confidence_score": 0.0,
+      "coverage_ratio": 0.0,
+      "dimensions_covered": [],
+      "dimensions_missing": [],
+      "institution_evidence_available": true,
+      "evidence_count": 8,
+      "institution_evidence_count": 5,
+      "explanation": "No explanation available",
+      "top_evidence_sources": [
+        {
+          "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "8a69de1c-6a0b-42ef-b45d-6305ae71e603",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 114,
+          "source_type": "framework",
+          "criterion": "7.1.10",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "5effee56-a01c-40ec-80f4-d77bca27169a",
+          "source_path": "NAAC_SSR_Manual_Universities.pdf",
+          "page_number": 74,
+          "source_type": "framework",
+          "criterion": "3.7.2",
+          "framework": "NAAC",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        },
+        {
+          "chunk_id": "3de8ab0e-da23-4b8f-aad2-8b288b693ebe",
+          "source_path": "SSR_Evidence.pdf",
+          "page_number": 45,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "reranker_score": 0.0
+        }
+      ],
+      "dimension_grounding": [],
+      "gaps_identified": [
+        {
+          "gap_type": "low_coverage",
+          "severity": "high",
+          "description": "Low dimension coverage: 0.0%",
+          "coverage_ratio": 0.0,
+          "recommendation": "Expand evidence to cover more required dimensions"
+        },
+        {
+          "gap_type": "low_confidence",
+          "severity": "medium",
+          "description": "Low confidence score: 0.0%",
+          "confidence_score": 0.0,
+          "recommendation": "Provide more detailed or higher-quality evidence"
+        },
+        {
+          "gap_type": "weak_evidence",
+          "severity": "medium",
+          "description": "Weak evidence quality: 0.0%",
+          "evidence_quality": 0.0,
+          "recommendation": "Improve evidence specificity and relevance"
+        }
+      ],
+      "evidence_strength": {
+        "overall_strength": "Weak",
+        "strong_count": 0,
+        "moderate_count": 0,
+        "weak_count": 5,
+        "per_chunk_strength": {
+          "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+            "strength": "Weak",
+            "score": 0.12041512616363124,
+            "dimensions_covered": 0
+          },
+          "13a11009-9259-4066-b882-aecee6810184": {
+            "strength": "Weak",
+            "score": 0.09197487992655268,
+            "dimensions_covered": 0
+          },
+          "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+            "strength": "Weak",
+            "score": 0.07569584482151231,
+            "dimensions_covered": 0
+          },
+          "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+            "strength": "Weak",
+            "score": 0.011772599394725145,
+            "dimensions_covered": 0
+          },
+          "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+            "strength": "Weak",
+            "score": 0.0,
+            "dimensions_covered": 0
+          }
+        }
+      }
+    }
+  ],
+  "recommendations": [],
+  "gaps_analysis": [],
+  "evidence_summary": {
+    "total_evidence_chunks": 40,
+    "institution_evidence_chunks": 25,
+    "framework_evidence_chunks": 15,
+    "criteria_with_institution_evidence": 5,
+    "criteria_without_institution_evidence": 0
+  }
+}

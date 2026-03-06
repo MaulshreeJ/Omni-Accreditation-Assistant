@@ -1,7 +1,8 @@
 """
-Validation module for LLM output schema validation.
+Validation Module
+Provides validation utilities for reports and data structures.
 """
 
-from .json_validator import JsonValidator, ComplianceOutput
+from validation.report_validator import validate_report, ReportValidationError
 
-__all__ = ['JsonValidator', 'ComplianceOutput']
+__all__ = ['validate_report', 'ReportValidationError']

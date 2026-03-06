@@ -159,7 +159,7 @@ def test_e3_feedback_store():
         stats = store.get_feedback_stats()
         
         print(f"✓ Stats retrieved:")
-        print(f"  Total: {stats['total_feedback']}")
+        print(f"  Total: {stats['total_feePdback']}")
         print(f"  By rating: {stats['by_rating']}")
         
         store.close()

@@ -1,6 +1,8 @@
 """
 Dual Retrieval - Phase 4 Milestone 4
 Retrieves from both framework and institution indexes.
+
+Performance Fix: Uses ModelManager for shared model instances.
 """
 
 import sys
@@ -11,16 +13,28 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from retrieval.hybrid_retriever import HybridRetriever
 from retrieval.reranker import Reranker
 from retrieval.index_loader import IndexLoader
+from models.model_manager import get_model_manager
 
 
 class DualRetriever:
     """Retrieve from both framework and institution indexes."""
     
-    def __init__(self):
-        """Initialize dual retriever."""
-        self.hybrid_retriever = HybridRetriever()
-        self.reranker = Reranker()
+    def __init__(self, model_manager=None):
+        """
+        Initialize dual retriever with shared models.
+        
+        Args:
+            model_manager: Optional ModelManager instance (for testing)
+        """
+        self.hybrid_retriever = HybridRetriever(model_manager=model_manager)
+        self.reranker = Reranker(model_manager=model_manager)
         self.index_loader = IndexLoader()
+        
+        # Get shared embedder from ModelManager
+        if model_manager is None:
+            model_manager = get_model_manager()
+        self.model_manager = model_manager
+        self.embedder = model_manager.get_embedder()
     
     def retrieve(self, query: str, query_variants: List[str], framework: str,
                  query_type: str, top_k_framework: int = 3,  # Issue 11: Changed from 5 to 3
@@ -90,9 +104,18 @@ class DualRetriever:
                 chunk_id = result['chunk_id']
                 chunk = self.index_loader.get_chunk_metadata(chunk_id)
                 
+                # CRITICAL: Preserve reranker_score from reranking step
+                reranker_score = result.get('reranker_score', 0.0)
+                
                 if chunk:
                     # Infer evidence weight from source_type
                     source_type = chunk.get('source_type', 'framework')
+                    
+                    # Add source_type and text to result for downstream use
+                    result['source_type'] = source_type
+                    result['text'] = chunk.get('text', '')  # Add text for evidence grounding
+                    result['child_text'] = chunk.get('text', '')  # For dimension checking
+                    result['parent_context'] = chunk.get('parent_context', '')
                     
                     if source_type == 'institution':
                         # Institution chunks get strong priority boost
@@ -104,12 +127,15 @@ class DualRetriever:
                         # Framework chunks get penalty (context only)
                         evidence_weight = 0.6
                     
-                    # Apply weight to reranker score
-                    reranker_score = result.get('reranker_score', 0.0)
+                    # Apply weight to reranker score (preserve original score)
                     result['final_score'] = reranker_score * evidence_weight
                 else:
                     # Fallback if metadata not found
-                    result['final_score'] = result.get('reranker_score', 0.0)
+                    result['source_type'] = 'framework'
+                    result['text'] = ''
+                    result['child_text'] = ''
+                    result['parent_context'] = ''
+                    result['final_score'] = reranker_score
             
             # Re-sort by final_score to prioritize institution evidence
             reranked_with_weights = sorted(reranked, key=lambda x: x.get('final_score', 0.0), reverse=True)
@@ -147,16 +173,9 @@ class DualRetriever:
         if faiss_index.ntotal == 0:
             return []
         
-        # Embed query
-        from sentence_transformers import SentenceTransformer
-        import torch
-        
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        model = SentenceTransformer('BAAI/bge-base-en-v1.5', device=device)
-        
-        # Use first variant for embedding
+        # Use shared embedder from ModelManager
         query_text = query_variants[0] if query_variants else original_query
-        query_embedding = model.encode([query_text], normalize_embeddings=True)[0]
+        query_embedding = self.embedder.encode([query_text], normalize_embeddings=True)[0]
         query_embedding = query_embedding.reshape(1, -1).astype('float32')
         
         # FAISS search

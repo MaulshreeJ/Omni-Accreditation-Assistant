@@ -3,10 +3,12 @@ C2 - Dimension Coverage Checker
 Determines which required compliance dimensions are present in retrieved evidence.
 
 FIXED: Per-chunk coverage tracking for traceability.
+PHASE 6: Enhanced with regex-based semantic detection for better coverage accuracy.
 """
 
 import yaml
 import os
+import re
 from typing import List, Dict, Any, Set
 
 
@@ -109,8 +111,8 @@ class DimensionChecker:
                 dim_id = dimension['id']
                 keywords = dimension.get('keywords', [])
                 
-                # Check if any keyword is present in THIS chunk
-                if any(keyword.lower() in text for keyword in keywords):
+                # Phase 6: Enhanced detection with regex patterns
+                if self._check_dimension_match(text, keywords):
                     dimension_hits.add(dim_id)
                     per_chunk_hits[chunk_id].append(dim_id)
         
@@ -149,3 +151,122 @@ class DimensionChecker:
             'optional_dimensions': [],
             'metric_name': 'Unknown'
         }
+    
+    def _check_dimension_match(self, text: str, keywords: List[str]) -> bool:
+        """
+        Check if dimension is present using enhanced multi-signal detection.
+        
+        Pre-UI Enhancement: Combines regex, keyword proximity, and numeric signals.
+        
+        Args:
+            text: Chunk text (lowercased)
+            keywords: List of keywords for this dimension
+            
+        Returns:
+            True if dimension is detected
+        """
+        detection_score = 0
+        has_numeric = bool(re.search(r'\b\d+\b', text))
+        
+        for keyword in keywords:
+            keyword_lower = keyword.lower()
+            
+            # Signal 1: Exact keyword match (case-insensitive) - Strong signal
+            if keyword_lower in text:
+                detection_score += 2
+                break
+            
+            # Signal 2: Word boundary match (avoid partial matches) - Strong signal
+            # e.g., "research" matches "research projects" but not "researcher"
+            pattern = r'\b' + re.escape(keyword_lower) + r'\b'
+            if re.search(pattern, text):
+                detection_score += 2
+                break
+            
+            # Signal 3: Plural/singular variations - Medium signal
+            # e.g., "publication" matches "publications"
+            if keyword_lower.endswith('s'):
+                singular = keyword_lower[:-1]
+                if singular in text:
+                    detection_score += 1
+                    break
+            else:
+                plural = keyword_lower + 's'
+                if plural in text:
+                    detection_score += 1
+                    break
+            
+            # Signal 4: Common variations - Medium signal
+            # e.g., "funding" matches "funded", "funds"
+            variations = self._get_keyword_variations(keyword_lower)
+            for variation in variations:
+                if variation in text:
+                    detection_score += 1
+                    break
+            
+            # Signal 5: Keyword proximity (within 50 chars) - Weak signal
+            if self._check_keyword_proximity(text, keyword_lower):
+                detection_score += 1
+        
+        # Signal 6: Numeric presence - Weak signal (adds context)
+        if has_numeric:
+            detection_score += 1
+        
+        # Threshold: Need at least 2 points to consider dimension detected
+        # This allows weaker evidence to still count toward coverage
+        return detection_score >= 2
+    
+    def _get_keyword_variations(self, keyword: str) -> List[str]:
+        """
+        Generate common variations of a keyword.
+        
+        Args:
+            keyword: Base keyword
+            
+        Returns:
+            List of variations
+        """
+        variations = []
+        
+        # Common suffixes
+        if keyword.endswith('ing'):
+            # funding -> funded, fund, funds
+            base = keyword[:-3]
+            variations.extend([base, base + 'ed', base + 's'])
+        elif keyword.endswith('ed'):
+            # funded -> funding, fund, funds
+            base = keyword[:-2]
+            variations.extend([base, base + 'ing', base + 's'])
+        elif keyword.endswith('tion'):
+            # publication -> publish, published, publishing
+            base = keyword[:-4]
+            variations.extend([base, base + 'ed', base + 'ing'])
+        
+        return variations
+    
+    def _check_keyword_proximity(self, text: str, keyword: str, window: int = 50) -> bool:
+        """
+        Check if keyword appears within a proximity window of related terms.
+        
+        Args:
+            text: Chunk text (lowercased)
+            keyword: Keyword to check
+            window: Character window size
+            
+        Returns:
+            True if keyword is near related terms
+        """
+        # Find all occurrences of keyword-related terms
+        related_terms = ['project', 'program', 'initiative', 'activity', 
+                        'research', 'study', 'grant', 'funding', 'award']
+        
+        for term in related_terms:
+            if term in text:
+                # Check if keyword is within window of this term
+                term_pos = text.find(term)
+                keyword_pos = text.find(keyword)
+                
+                if keyword_pos >= 0 and abs(term_pos - keyword_pos) <= window:
+                    return True
+        
+        return False
