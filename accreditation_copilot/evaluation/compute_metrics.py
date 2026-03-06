@@ -69,7 +69,7 @@ EVAL_QUERIES = [
 ]
 
 
-def compute_metrics(top_k=5):
+def compute_metrics(top_k=8):
     """
     Compute retrieval metrics using the existing pipeline.
     
@@ -133,20 +133,29 @@ def compute_metrics(top_k=5):
                 text = r.get('child_text', '').lower()
             retrieved_texts.append(text)
         
-        # Count relevant chunks found
-        relevant_found = 0
+        # Count relevant chunks found using set to avoid duplicate counting
+        matched_keywords = set()
         first_relevant_rank = None
         
         for rank, text in enumerate(retrieved_texts, start=1):
-            # Check if any relevant keyword appears in the text
-            if any(keyword.lower() in text for keyword in relevant_keywords):
-                relevant_found += 1
-                if first_relevant_rank is None:
-                    first_relevant_rank = rank
+            # Check each keyword and track which ones have been matched
+            for keyword in relevant_keywords:
+                if keyword.lower() in text and keyword not in matched_keywords:
+                    matched_keywords.add(keyword)
+                    if first_relevant_rank is None:
+                        first_relevant_rank = rank
+        
+        # Use the number of unique matched keywords
+        relevant_found = len(matched_keywords)
         
         # Compute metrics for this query
         precision = relevant_found / top_k if top_k > 0 else 0.0
         recall = relevant_found / len(relevant_keywords) if len(relevant_keywords) > 0 else 0.0
+        
+        # Ensure recall never exceeds 1.0
+        if recall > 1.0:
+            print(f"     Warning: Recall exceeded 1.0 ({recall:.3f}) before correction")
+            recall = 1.0
         
         if precision + recall > 0:
             f1 = 2 * precision * recall / (precision + recall)
@@ -272,8 +281,8 @@ def print_final_metrics(metrics):
 def main():
     """Main execution function."""
     try:
-        # Compute metrics
-        metrics = compute_metrics(top_k=5)
+        # Compute metrics with expanded evaluation coverage
+        metrics = compute_metrics(top_k=8)
         
         # Print results
         print_final_metrics(metrics)

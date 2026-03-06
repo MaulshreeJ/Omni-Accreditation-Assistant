@@ -55,14 +55,16 @@ class DualRetriever:
         Returns:
             Tuple of (merged_results, institution_evidence_available)
         """
-        # Retrieve from framework index (existing)
+        # Retrieve from framework index using multi-query retrieval
+        # With multi-query, we use fewer results per variant (10 instead of 25)
+        # because we're collecting from multiple query variants
         framework_results = self.hybrid_retriever.retrieve(
             query_variants,
             framework,
             query_type,
             query,
             explicit_metric=None,
-            top_k_per_variant=15,
+            top_k_per_variant=10,
             final_top_k=top_k_framework
         )
         
@@ -94,9 +96,23 @@ class DualRetriever:
         # Merge results
         merged_results = framework_results + institution_results
         
-        # Rerank merged results
+        # CHANGE 2: Remove duplicate chunks before reranking
+        # Deduplication improves precision by preventing duplicate evidence
+        unique_chunks = {}
+        for chunk in merged_results:
+            chunk_id = chunk.get('chunk_id')
+            if chunk_id not in unique_chunks:
+                unique_chunks[chunk_id] = chunk
+            else:
+                # Keep the one with higher fused_score
+                if chunk.get('fused_score', 0.0) > unique_chunks[chunk_id].get('fused_score', 0.0):
+                    unique_chunks[chunk_id] = chunk
+        
+        merged_results = list(unique_chunks.values())
+        
+        # Rerank merged results with expanded candidate pool
         if merged_results:
-            reranked = self.reranker.rerank(query, merged_results, top_k=15)
+            reranked = self.reranker.rerank(query, merged_results, top_k=20)
             
             # Apply evidence weight to prioritize institution chunks
             # This ensures table rows rank higher than framework context
