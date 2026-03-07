@@ -1,75 +1,87 @@
+# 🎓 Omni Accreditation Copilot
+
 <div align="center">
 
-# 🎓 Accreditation Copilot
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.9+-green.svg)
+![Next.js](https://img.shields.io/badge/next.js-14+-black.svg)
+![License](https://img.shields.io/badge/license-MIT-purple.svg)
 
-### Intelligent RAG System for NAAC & NBA Accreditation Compliance
+**AI-Powered Accreditation Intelligence for NAAC and NBA Frameworks**
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1-red.svg)](https://pytorch.org/)
-[![CUDA](https://img.shields.io/badge/CUDA-12.1-green.svg)](https://developer.nvidia.com/cuda-toolkit)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
-[Features](#-features) • [Quick Start](#-quick-start) • [Architecture](#-architecture) • [Documentation](#-documentation) • [Performance](#-performance)
+[Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-documentation) • [Architecture](#-architecture) • [Contributing](#-contributing)
 
 </div>
 
 ---
 
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Project Structure](#-project-structure)
+- [Usage Guide](#-usage-guide)
+- [Theme System](#-theme-system)
+- [API Documentation](#-api-documentation)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Troubleshooting](#-troubleshooting)
+- [Documentation](#-documentation)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
 ## 🌟 Overview
 
-**Accreditation Copilot** is a state-of-the-art Retrieval-Augmented Generation (RAG) system designed to help educational institutions navigate the complex requirements of:
+Omni Accreditation Copilot is an intelligent system that helps educational institutions prepare for NAAC (National Assessment and Accreditation Council) and NBA (National Board of Accreditation) assessments. It uses advanced AI to analyze institutional evidence, identify gaps, and provide actionable recommendations.
 
-- 🏛️ **NAAC** (National Assessment and Accreditation Council)
-- 🎯 **NBA** (National Board of Accreditation)
+### Key Capabilities
 
-Built with cutting-edge AI technologies, it provides accurate, context-rich answers to accreditation queries in under a second.
+✅ **Automated Compliance Auditing** - Run audits against NAAC/NBA criteria  
+✅ **Evidence Analysis** - Analyze institutional documents and identify gaps  
+✅ **Smart Recommendations** - Get actionable steps to improve grades  
+✅ **Multimodal Input** - Text, voice, and file upload support  
+✅ **Beautiful UI** - Modern glassmorphism design with 3 theme options  
+✅ **Caching System** - Fast results with intelligent caching  
 
 ---
 
 ## ✨ Features
 
-<table>
-<tr>
-<td width="50%">
+### 🎯 Core Features
 
-### 🔍 **Hybrid Retrieval**
-- Dense search with FAISS
-- Sparse search with BM25
-- Reciprocal Rank Fusion
-- Cross-encoder reranking
+| Feature | Description |
+|---------|-------------|
+| **Dual Retrieval** | Combines framework guidelines with institutional evidence |
+| **Confidence Scoring** | Calculates compliance confidence with dimension coverage |
+| **Gap Detection** | Identifies missing evidence and weak areas |
+| **Evidence Grounding** | Links recommendations to specific evidence chunks |
+| **Query Expansion** | Enhances queries for better retrieval |
+| **Audit Caching** | Speeds up repeated audits with smart caching |
 
-</td>
-<td width="50%">
+### 🎨 UI Features
 
-### 🧠 **Smart Context**
-- Parent-child chunk expansion
-- 2.8x context enrichment
-- Token-optimized (300-400 tokens)
-- Hierarchical sibling addition
+| Feature | Description |
+|---------|-------------|
+| **3 Theme Options** | Quiet Night, Morning Light, Rainy Afternoon |
+| **Voice Input** | Web Speech API integration |
+| **File Upload** | PDF, PNG, JPG support |
+| **Real-time Audit** | Live progress indicators |
+| **Interactive Dashboard** | Visual metrics and charts |
+| **Responsive Design** | Works on desktop and mobile |
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+### 🔧 Technical Features
 
-### ⚡ **High Performance**
-- ~900ms query response time
-- GPU-accelerated embeddings
-- Round-robin API key rotation
-- 100% sibling addition success
-
-</td>
-<td width="50%">
-
-### 🎯 **Precision Retrieval**
-- Metric-specific detection
-- Criterion-based boosting
-- Framework auto-detection
-- Exact match guarantee
-
-</td>
-</tr>
-</table>
+| Feature | Description |
+|---------|-------------|
+| **FastAPI Backend** | High-performance async API |
+| **Next.js Frontend** | React with TypeScript |
+| **FAISS + BM25** | Hybrid retrieval system |
+| **Groq LLM** | Fast inference with Llama models |
+| **SQLite Metadata** | Efficient metadata storage |
+| **Property-Based Testing** | Comprehensive test coverage |
 
 ---
 
@@ -77,12 +89,10 @@ Built with cutting-edge AI technologies, it provides accurate, context-rich answ
 
 ### Prerequisites
 
-```bash
-✅ Python 3.12+
-✅ CUDA-capable GPU (optional but recommended)
-✅ 8GB+ RAM
-✅ Groq API keys (get them at console.groq.com)
-```
+- Python 3.9+
+- Node.js 18+
+- npm or yarn
+- Virtual environment (venv)
 
 ### Installation
 
@@ -91,158 +101,59 @@ Built with cutting-edge AI technologies, it provides accurate, context-rich answ
 git clone <repository-url>
 cd accreditation_copilot
 
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# 2. Set up Python virtual environment
+python -m venv ../venv
+../venv/Scripts/activate  # Windows
+source ../venv/bin/activate  # Linux/Mac
 
-# 3. Install dependencies
+# 3. Install Python dependencies
 pip install -r requirements.txt
 
-# 4. Configure environment
-cp .env.example .env
-# Edit .env and add your Groq API keys
+# 4. Install frontend dependencies
+cd frontend
+npm install
+cd ..
 
-# 5. Add PDF documents
-# Place NAAC PDFs in: data/raw_docs/naac/
-# Place NBA PDFs in: data/raw_docs/nba/
-
-# 6. Build indices
-python scripts/rebuild_ingestion.py
-
-# 7. Test the system
-python tests/test_phase2_2_verification.py
+# 5. Set up environment variables
+copy .env.example .env
+# Edit .env and add your GROQ_API_KEY
 ```
 
-### Expected Output
+### Running the Application
 
-```
-✅ Retrieval completed successfully
-   Retrieved 5 results
+#### Option 1: Using Startup Scripts (Recommended)
 
-Result #1:
-  Framework: NAAC
-  Criterion: 3.3.1
-  Siblings Used: 3
-  Child Tokens: 304 → Parent Tokens: 1150
-  Reranker Score: 0.803
-  ✅ Token limit OK (under 1200)
-
-✅ ALL TESTS PASSED
+**Terminal 1 - Backend:**
+```powershell
+cd accreditation_copilot
+.\scripts\RESTART_BACKEND.bat
 ```
 
----
-
-## 🏗️ Architecture
-
-```mermaid
-graph LR
-    A[User Query] --> B[Framework Router]
-    B --> C[Query Expander]
-    C --> D[Hybrid Retrieval]
-    D --> E[FAISS Dense]
-    D --> F[BM25 Sparse]
-    E --> G[Score Fusion]
-    F --> G
-    G --> H[Reranker]
-    H --> I[Parent Expander]
-    I --> J[Top-5 Results]
-    
-    style A fill:#e1f5ff
-    style J fill:#d4edda
-    style D fill:#fff3cd
-    style H fill:#f8d7da
+**Terminal 2 - Frontend:**
+```powershell
+cd accreditation_copilot
+.\scripts\START_FRONTEND.bat
 ```
 
-### Pipeline Flow
+#### Option 2: Manual Start
 
-1. **Framework Detection** → Identifies NAAC or NBA queries
-2. **Query Expansion** → Generates 6 query variants
-3. **Hybrid Retrieval** → Searches with FAISS (dense) + BM25 (sparse)
-4. **Score Fusion** → Combines results using Reciprocal Rank Fusion
-5. **Reranking** → Cross-encoder scoring for top-10 candidates
-6. **Parent Expansion** → Adds sibling chunks for richer context
-7. **Results** → Returns top-5 enriched results
-
----
-
-## 📊 Performance
-
-<table>
-<tr>
-<th>Metric</th>
-<th>Value</th>
-<th>Status</th>
-</tr>
-<tr>
-<td>Query Response Time</td>
-<td>~900ms</td>
-<td>⚡ Fast</td>
-</tr>
-<tr>
-<td>Context Expansion</td>
-<td>2.8x average</td>
-<td>📈 Excellent</td>
-</tr>
-<tr>
-<td>Chunk Size Distribution</td>
-<td>88.7% in 300-400 tokens</td>
-<td>🎯 Optimal</td>
-</tr>
-<tr>
-<td>Sibling Addition Rate</td>
-<td>100%</td>
-<td>✅ Perfect</td>
-</tr>
-<tr>
-<td>GPU Memory Usage</td>
-<td>1.2GB / 8GB (15%)</td>
-<td>💚 Efficient</td>
-</tr>
-<tr>
-<td>Ingestion Speed</td>
-<td>~2 min for 14 PDFs</td>
-<td>⚡ Fast</td>
-</tr>
-</table>
-
-### Benchmark Results
-
-```
-📊 Retrieval Quality
-├─ Precision@1: 80%
-├─ Precision@5: 100%
-└─ Avg Reranker Score: 0.68
-
-🎯 Context Quality
-├─ Avg Siblings Added: 2.0
-├─ Token Budget Usage: 82%
-└─ Context Completeness: +85%
-
-⚡ System Efficiency
-├─ Retrieval Time: 900ms
-├─ GPU Utilization: 15%
-└─ Throughput: 67 queries/min
+**Backend:**
+```bash
+cd accreditation_copilot
+python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
----
+**Frontend:**
+```bash
+cd accreditation_copilot/frontend
+npm run dev
+```
 
-## 🛠️ Technology Stack
+### Access the Application
 
-<div align="center">
-
-| Component | Technology | Version |
-|-----------|-----------|---------|
-| **Language** | Python | 3.12.10 |
-| **Deep Learning** | PyTorch | 2.5.1+cu121 |
-| **Embeddings** | BAAI/bge-base-en-v1.5 | 768-dim |
-| **Reranker** | BAAI/bge-reranker-base | - |
-| **Vector Store** | FAISS | IndexFlatIP |
-| **Sparse Retrieval** | BM25 | rank-bm25 |
-| **Database** | SQLite | 3.x |
-| **LLM API** | Groq | - |
-| **PDF Processing** | PyMuPDF | - |
-
-</div>
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
 
 ---
 
@@ -250,228 +161,462 @@ graph LR
 
 ```
 accreditation_copilot/
+├── 📱 frontend/              # Next.js frontend application
+│   ├── app/                  # Next.js app directory
+│   ├── components/           # React components
+│   └── public/               # Static assets
 │
-├── 📄 README.md                    # You are here
-├── 📄 requirements.txt             # Python dependencies
-├── 🐍 main.py                      # Main entry point
+├── 🔧 api/                   # FastAPI backend
+│   ├── main.py              # API entry point
+│   ├── routers/             # API route handlers
+│   └── error_handler.py     # Error handling
 │
-├── 📦 ingestion/                   # Phase 1: Document Processing
-│   ├── pdf_processor.py           # PDF text extraction
-│   ├── semantic_chunker.py        # Token-based chunking
-│   └── run_ingestion.py           # Ingestion orchestrator
+├── 🧠 Core Modules/
+│   ├── audit/               # Audit pipeline
+│   ├── retrieval/           # Dual retrieval system
+│   ├── scoring/             # Confidence & coverage scoring
+│   ├── analysis/            # Gap detection & grounding
+│   ├── synthesis/           # Report generation
+│   └── validation/          # Report validation
 │
-├── 🔍 retrieval/                   # Phase 2: Hybrid Retrieval
-│   ├── retrieval_pipeline.py      # Main orchestrator
-│   ├── hybrid_retriever.py        # FAISS + BM25
-│   ├── parent_expander.py         # Context expansion
-│   ├── reranker.py                # Cross-encoder
-│   └── ... (9 more modules)
+├── 💾 Data & Storage/
+│   ├── data/                # Raw docs, chunks, metadata
+│   ├── indexes/             # FAISS indexes
+│   ├── cache/               # Audit cache
+│   └── audit_results/       # Audit outputs
 │
-├── 🛠️ utils/                       # Utilities
-│   ├── metadata_store.py          # SQLite interface
-│   └── groq_pool.py               # API key rotation
+├── 🛠️ Utilities/
+│   ├── ingestion/           # Document processing
+│   ├── models/              # Model management
+│   ├── criteria/            # Criterion registry
+│   ├── utils/               # Helper functions
+│   └── security/            # Security utilities
 │
-├── 🧪 tests/                       # Test Suite
-│   └── test_phase2_2_verification.py
+├── 📜 Scripts/
+│   ├── RESTART_BACKEND.bat  # Start backend
+│   ├── START_FRONTEND.bat   # Start frontend
+│   ├── start_servers.bat    # Start both
+│   ├── demos/               # Demo scripts
+│   └── utils/               # Utility scripts
 │
-├── 📜 scripts/                     # Utility Scripts
-│   └── rebuild_ingestion.py       # Rebuild indices
-│
-├── 📚 docs/                        # Documentation
-│   ├── COMPLETE_IMPLEMENTATION_GUIDE.md
-│   ├── PHASE2_OUTPUT_EXAMPLES.md
-│   └── QUICK_START.md
-│
-├── 💾 data/                        # Data Storage
-│   ├── metadata.db                # Chunk metadata
-│   └── raw_docs/                  # Source PDFs
-│
-└── 🗂️ indexes/                     # Vector Indices
-    ├── *.index                    # FAISS indices
-    └── *_bm25.pkl                 # BM25 indices
+├── 🧪 tests/                # Test files
+├── 📚 docs/                 # Documentation
+├── 📋 requirements.txt      # Python dependencies
+├── 🔐 .env.example          # Environment template
+└── 📖 README.md             # This file
 ```
 
 ---
 
-## 📖 Documentation
+## 📖 Usage Guide
 
-<table>
-<tr>
-<td width="33%" align="center">
+### 1. Upload Institutional Documents
 
-### 📘 [Complete Guide](docs/COMPLETE_IMPLEMENTATION_GUIDE.md)
-Full technical documentation with architecture details
+1. Click the **Upload** button (📤) in the query panel
+2. Select PDF, PNG, or JPG files
+3. Click **Ingest Files** to process them
+4. Wait for "Files ingested successfully!" message
 
-</td>
-<td width="33%" align="center">
+### 2. Run an Audit
 
-### 🚀 [Quick Start](docs/QUICK_START.md)
-Get up and running in 5 minutes
+1. Select **Framework**: NAAC or NBA
+2. Enter **Criterion**: e.g., `3.2.1` for NAAC or `C5` for NBA
+3. (Optional) Enter a custom query or use voice input (🎤)
+4. Click **Run Audit**
+5. Wait for results (5-15 seconds)
 
-</td>
-<td width="33%" align="center">
+### 3. Review Results
 
-### 📊 [Output Examples](docs/PHASE2_OUTPUT_EXAMPLES.md)
-Real retrieval results and comparisons
+The dashboard shows:
 
-</td>
-</tr>
-</table>
+- **Compliance Status**: Compliant, Partial, Weak, or No Evidence
+- **Confidence Score**: Overall confidence (0-100%)
+- **Coverage Ratio**: Dimension coverage (0-100%)
+- **Evidence Count**: Number of evidence chunks found
 
-### Phase Documentation
+### 4. Analyze Recommendations
 
-- 📄 [Phase 1: Ingestion Pipeline](docs/PHASE1_CORRECTION_SUMMARY.md)
-- 📄 [Phase 1.1: Chunk Optimization](docs/PHASE1_1_COMPLETE.md)
-- 📄 [Phase 2: Hybrid Retrieval](docs/PHASE2_SUMMARY.md)
-- 📄 [Phase 2.1: Precision Upgrade](docs/PHASE2_1_SUMMARY.md)
-- 📄 [Phase 2.2: Parent-Child Expansion](docs/PHASE2_2_CLEAN_VERIFICATION.md)
+The **Roadmap to A+ Grade** panel provides:
+
+- ✅ Actionable recommendations with priority levels
+- ✅ Specific action items for each recommendation
+- ✅ Expected impact on your grade
+- ✅ Timeline estimates
+
+### 5. Explore Evidence
+
+The **Evidence Viewer** shows:
+
+- Source documents
+- Relevant text chunks
+- Confidence scores
+- Dimension coverage
+
+---
+
+## 🎨 Theme System
+
+Omni features 3 beautiful themes to match your work environment:
+
+### 🌟 Quiet Night (Default)
+- **Best for**: Night work, focused coding
+- **Colors**: Deep indigo with neon cyan & pink
+- **Mood**: Modern, tech-forward, energetic
+
+### ☀️ Morning Light
+- **Best for**: Morning sessions, positive energy
+- **Colors**: Warm golden yellow and cream
+- **Mood**: Optimistic, fresh, welcoming
+
+### 🌧️ Rainy Afternoon
+- **Best for**: Afternoon work, reduced distractions
+- **Colors**: Soft gray and muted blue
+- **Mood**: Calm, professional, serene
+
+**How to Switch Themes:**
+1. Look for the theme icon in the sidebar (⭐/☀️/☁️)
+2. Click to open the theme menu
+3. Select your preferred theme
+4. Theme saves automatically!
+
+📚 **Learn More**: [Theme System Guide](docs/THEME_SYSTEM_GUIDE.md)
+
+---
+
+## 🔌 API Documentation
+
+### Audit Endpoint
+
+**POST** `/api/audit/run`
+
+Run an audit for a specific criterion.
+
+**Request Body:**
+```json
+{
+  "framework": "NAAC",
+  "criterion": "3.2.1",
+  "query": "Optional custom query"
+}
+```
+
+**Response:**
+```json
+{
+  "criterion": "3.2.1",
+  "framework": "NAAC",
+  "compliance_status": "Partial",
+  "confidence_score": 0.07,
+  "coverage_ratio": 1.0,
+  "dimensions_covered": ["funding_amount", "project_count", "funding_agencies"],
+  "dimensions_missing": [],
+  "evidence_count": 10,
+  "evidence": [...],
+  "gaps": [...],
+  "recommendations": [...],
+  "explanation": "...",
+  "timestamp": "2024-01-01T00:00:00",
+  "cached": false
+}
+```
+
+### Upload Endpoint
+
+**POST** `/api/upload/`
+
+Upload institutional documents.
+
+**Request:** Multipart form data with files
+
+**Response:**
+```json
+{
+  "message": "Files uploaded successfully",
+  "files": ["file1.pdf", "file2.pdf"],
+  "count": 2
+}
+```
+
+### Ingest Endpoint
+
+**POST** `/api/upload/ingest`
+
+Process uploaded files and build indexes.
+
+**Response:**
+```json
+{
+  "message": "Files ingested successfully",
+  "chunks_created": 25,
+  "indexes_built": ["FAISS", "BM25", "SQLite"]
+}
+```
+
+📚 **Full API Docs**: http://localhost:8000/docs (when running)
+
+---
+
+## 💻 Development
+
+### Backend Development
+
+```bash
+# Activate virtual environment
+../venv/Scripts/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run backend with auto-reload
+python -m uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Frontend Development
+
+```bash
+# Navigate to frontend
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+### Code Style
+
+**Python:**
+- Follow PEP 8
+- Use type hints
+- Document functions with docstrings
+
+**TypeScript/React:**
+- Use TypeScript strict mode
+- Follow React best practices
+- Use functional components with hooks
 
 ---
 
 ## 🧪 Testing
 
-Run the test suite to verify everything works:
+### Run All Tests
 
 ```bash
-# Full verification test
-python tests/test_phase2_2_verification.py
+# Python tests
+cd accreditation_copilot
+pytest tests/
 
-# Individual phase tests
-python tests/test_phase2.py          # Phase 2 retrieval
-python tests/test_phase2_1.py        # Phase 2.1 precision
-python tests/test_groq_keys.py       # API key rotation
+# Specific test file
+pytest tests/test_audit_flow.py
+
+# With coverage
+pytest --cov=. tests/
+```
+
+### Available Tests
+
+| Test File | Description |
+|-----------|-------------|
+| `test_audit_flow.py` | End-to-end audit pipeline |
+| `test_audit_response.py` | API response structure |
+| `test_dimension_check.py` | Dimension coverage |
+| `test_groq_connection.py` | LLM connectivity |
+| `test_institution_retrieval.py` | Institution evidence retrieval |
+| `test_integration.py` | Integration tests |
+| `test_retrieval_fields.py` | Retrieval field validation |
+| `test_stability_fixes.py` | Stability fixes validation |
+
+### Demo Scripts
+
+```bash
+# Cache system demo
+python scripts/demos/demo_cache_system.py
+
+# Phase 6 complete demo
+python scripts/demos/demo_phase6_complete.py
+
+# Phase E tracing demo
+python scripts/demos/demo_phase_e_tracing.py
 ```
 
 ---
 
-## ⚙️ Configuration
+## 🔧 Troubleshooting
 
-### Environment Variables
+### Common Issues
 
-Edit `accreditation_copilot/.env`:
+#### Backend won't start
 
-```env
-# Groq API Keys (supports up to 9 keys)
-GROQ_API_KEY_1=gsk_your_first_key_here
-GROQ_API_KEY_2=gsk_your_second_key_here
+**Error:** `No module named 'fastapi'`
 
-# LangSmith (optional - for observability)
-LANGCHAIN_API_KEY=ls_your_key_here
-LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=accreditation-copilot
+**Solution:**
+```bash
+# Ensure virtual environment is activated
+../venv/Scripts/activate
 
-# HuggingFace (optional - for private models)
-# HF_TOKEN=hf_your_token_here
-
-# Ollama (optional - for local LLMs)
-# OLLAMA_HOST=http://localhost:11434
+# Reinstall dependencies
+pip install -r requirements.txt
 ```
 
-### Chunking Parameters
+#### Frontend won't start
 
-Adjust in `ingestion/semantic_chunker.py`:
+**Error:** `Cannot find module 'next'`
 
-```python
-chunk_size = 300        # Target tokens per chunk
-chunk_overlap = 50      # Overlap between chunks
-hard_cap = 400          # Maximum allowed tokens
-absolute_max = 450      # Never exceed this limit
+**Solution:**
+```bash
+cd frontend
+npm install
 ```
 
-### Retrieval Parameters
+#### Port already in use
 
-Adjust in `retrieval/retrieval_pipeline.py`:
+**Error:** `Address already in use: 8000`
 
-```python
-top_k_per_variant = 20      # Results per query variant
-top_k_fusion = 10           # Results after fusion
-top_k_final = 5             # Final results after reranking
-max_parent_tokens = 1200    # Token limit for parent context
+**Solution:**
+```bash
+# Windows
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
+
+# Linux/Mac
+lsof -ti:8000 | xargs kill -9
 ```
+
+#### No recommendations showing
+
+**Cause:** Backend not sending all required fields
+
+**Solution:**
+1. Restart backend with updated code
+2. Clear browser cache (Ctrl+Shift+R)
+3. Check browser console for errors
+
+#### Theme not applying
+
+**Cause:** localStorage issue or CSS not loaded
+
+**Solution:**
+1. Clear browser cache
+2. Check browser console for errors
+3. Verify `globals.css` is loaded
+
+### Getting Help
+
+1. Check [Documentation](#-documentation)
+2. Review [API Docs](http://localhost:8000/docs)
+3. Check browser console for errors
+4. Check backend logs for errors
 
 ---
 
-## 🗺️ Roadmap
+## 📚 Documentation
 
-### ✅ Completed
+### User Guides
 
-- [x] Phase 0: Environment Setup
-- [x] Phase 1: Ingestion Pipeline
-- [x] Phase 1.1: Chunk Optimization
-- [x] Phase 2: Hybrid Retrieval
-- [x] Phase 2.1: Precision Upgrades
-- [x] Phase 2.2: Parent-Child Expansion
+- [Quick Start Guide](docs/QUICK_FIX_GUIDE.md)
+- [Data Ingestion Guide](docs/DATA_INGESTION_GUIDE.md)
+- [Theme System Guide](docs/THEME_SYSTEM_GUIDE.md)
+- [Theme Preview](docs/THEME_PREVIEW.md)
 
-### 🔄 In Progress
+### Technical Documentation
 
-- [ ] Phase 3: Answer Generation
-  - [ ] LLM integration
-  - [ ] Citation tracking
-  - [ ] Confidence scoring
+- [Project Structure](docs/PROJECT_STRUCTURE.md)
+- [API Documentation](http://localhost:8000/docs)
+- [Retrieval System](docs/RETRIEVAL_SYSTEM_COMPLETE.md)
+- [Scoring Pipeline](docs/PHASE6_SUMMARY.md)
+- [Cache System](docs/CACHE_SYSTEM_COMPLETE.md)
 
-### 📋 Planned
+### Implementation Guides
 
-- [ ] Phase 4: Evaluation
-  - [ ] Retrieval metrics
-  - [ ] Answer quality assessment
-  - [ ] End-to-end testing
-- [ ] Web Interface
-- [ ] Multi-modal support (images, tables)
-- [ ] Real-time document updates
-- [ ] Comparative analysis (NAAC vs NBA)
+- [UI Implementation](docs/UI_IMPLEMENTATION_GUIDE.md)
+- [Stability Fixes](docs/STABILITY_FIXES_COMPLETE.md)
+- [Recommendations Fix](docs/RECOMMENDATIONS_FIX.md)
+- [Evidence Display Fix](docs/EVIDENCE_DISPLAY_FIX.md)
+
+### Reference
+
+- [Multi-Query Retrieval](docs/MULTI_QUERY_QUICK_REFERENCE.md)
+- [RRF Quick Reference](docs/RRF_QUICK_REFERENCE.md)
+- [Stability Quick Ref](docs/STABILITY_QUICK_REF.md)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
+We welcome contributions! Here's how to get started:
 
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. 💻 Make your changes
-4. ✅ Add tests
-5. 📝 Update documentation
-6. 🚀 Submit a pull request
+### Development Workflow
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and development process.
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Make your changes**
+4. **Test your changes**
+   ```bash
+   pytest tests/
+   npm run build  # for frontend changes
+   ```
+5. **Commit your changes**
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+6. **Push to your fork**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+7. **Open a Pull Request**
+
+### Code Guidelines
+
+- Write clear, descriptive commit messages
+- Add tests for new features
+- Update documentation as needed
+- Follow existing code style
+- Keep PRs focused and small
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **BAAI** for BGE embedding and reranking models
-- **FAISS Team** for efficient vector search
-- **Groq** for fast LLM inference
-- **PyMuPDF** for PDF processing
-- **HuggingFace** for model hosting
+- **NAAC** - National Assessment and Accreditation Council
+- **NBA** - National Board of Accreditation
+- **Groq** - Fast LLM inference
+- **FAISS** - Efficient similarity search
+- **Next.js** - React framework
+- **FastAPI** - Modern Python web framework
 
 ---
 
-## 📧 Contact & Support
+## 📞 Support
 
-<div align="center">
+Need help? Here's how to get support:
 
-**Questions?** Open an [issue](../../issues) or reach out:
-
-[![GitHub Issues](https://img.shields.io/github/issues/yourusername/accreditation-copilot)](../../issues)
-[![GitHub Discussions](https://img.shields.io/github/discussions/yourusername/accreditation-copilot)](../../discussions)
-
-</div>
+- 📖 Check the [Documentation](#-documentation)
+- 🐛 Report bugs via GitHub Issues
+- 💡 Request features via GitHub Issues
+- 📧 Contact the team at [email]
 
 ---
 
 <div align="center">
 
-### ⭐ Star this repo if you find it helpful!
+**Made with ❤️ for Educational Institutions**
 
-**Made with ❤️ for educational institutions**
-
-*Last Updated: March 2, 2026 • Version 1.0 • Phase 2.2 Complete*
+[⬆ Back to Top](#-omni-accreditation-copilot)
 
 </div>
