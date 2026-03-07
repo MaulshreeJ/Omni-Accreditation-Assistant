@@ -36,18 +36,46 @@ class AuditEnricher:
             # Query metadata
             metadata = self._get_chunk_metadata(chunk_id)
             
+            # Get text content from result
+            text_content = result.get('text') or result.get('child_text', 'No text available')
+            
             if metadata:
+                # Get reranker score from result (handle both formats)
+                reranker_score = result.get('reranker_score', 0.0)
+                if reranker_score == 0.0:
+                    # Try nested format
+                    reranker_score = result.get('scores', {}).get('reranker', 0.0)
+                
                 enriched_sources.append({
                     'chunk_id': chunk_id,
-                    'source_path': metadata['source'],
-                    'page_number': metadata['page'],
+                    'source': metadata['source'],  # Frontend expects 'source'
+                    'page': metadata['page'],  # Frontend expects 'page'
                     'source_type': metadata['source_type'],
                     'criterion': metadata.get('criterion', 'N/A'),
                     'framework': metadata['framework'],
-                    'reranker_score': round(result.get('scores', {}).get('reranker', 0.0), 3)
+                    'text': text_content,  # Include text content
+                    'reranker_score': round(reranker_score, 3),
+                    'strength': self._determine_strength(reranker_score)
                 })
         
         return enriched_sources
+    
+    def _determine_strength(self, reranker_score: float) -> str:
+        """
+        Determine evidence strength based on reranker score.
+        
+        Args:
+            reranker_score: Reranker score (0-1)
+            
+        Returns:
+            'Strong', 'Moderate', or 'Weak'
+        """
+        if reranker_score >= 0.7:
+            return 'Strong'
+        elif reranker_score >= 0.4:
+            return 'Moderate'
+        else:
+            return 'Weak'
     
     def _get_chunk_metadata(self, chunk_id: str) -> Dict[str, Any]:
         """

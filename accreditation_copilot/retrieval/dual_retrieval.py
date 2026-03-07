@@ -3,6 +3,8 @@ Dual Retrieval - Phase 4 Milestone 4
 Retrieves from both framework and institution indexes.
 
 Performance Fix: Uses ModelManager for shared model instances.
+FIX 2: Retrieval safety guards (always return lists, never None)
+FIX 5: Evidence field normalization
 """
 
 import sys
@@ -14,6 +16,7 @@ from retrieval.hybrid_retriever import HybridRetriever
 from retrieval.reranker import Reranker
 from retrieval.index_loader import IndexLoader
 from models.model_manager import get_model_manager
+from utils.evidence_normalizer import normalize_evidence_fields
 
 
 class DualRetriever:
@@ -84,17 +87,25 @@ class DualRetriever:
                     top_k_institution
                 )
                 
+                # FIX 2: Ensure institution_results is always a list
+                if institution_results is None:
+                    institution_results = []
+                
                 # Issue 12: Empty institution index handling
                 if institution_results and len(institution_results) > 0:
                     institution_evidence_available = True
         
         except Exception as e:
-            # Institution index not available yet - this is expected
-            # before any institutional evidence is uploaded
+            # FIX 2: Institution index not available - ensure empty list
+            institution_results = []
             pass
         
         # Merge results
         merged_results = framework_results + institution_results
+        
+        # FIX 2: Ensure merged_results is always a list
+        if merged_results is None:
+            merged_results = []
         
         # CHANGE 2: Remove duplicate chunks before reranking
         # Deduplication improves precision by preventing duplicate evidence
@@ -156,9 +167,13 @@ class DualRetriever:
             # Re-sort by final_score to prioritize institution evidence
             reranked_with_weights = sorted(reranked, key=lambda x: x.get('final_score', 0.0), reverse=True)
             
-            return reranked_with_weights, institution_evidence_available
+            # FIX 5: Normalize evidence fields before returning
+            normalized_results = [normalize_evidence_fields(r) for r in reranked_with_weights]
+            
+            return normalized_results, institution_evidence_available
         
-        return framework_results, institution_evidence_available
+        # FIX 2: Ensure we always return a list, never None
+        return framework_results if framework_results else [], institution_evidence_available
     
     def _retrieve_institution(self, query_variants: List[str], original_query: str,
                              top_k: int) -> List[Dict]:

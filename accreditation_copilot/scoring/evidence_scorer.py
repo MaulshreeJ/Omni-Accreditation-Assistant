@@ -56,8 +56,11 @@ class EvidenceScorer:
             # Detect signals with stricter rules
             signals = self._detect_signals(text)
             
-            # Get reranker score from Phase 2
-            reranker_score = result.get('scores', {}).get('reranker', 0.0)
+            # Get reranker score from Phase 2 (handle both formats)
+            reranker_score = result.get('reranker_score', 0.0)
+            if reranker_score == 0.0:
+                # Try nested format
+                reranker_score = result.get('scores', {}).get('reranker', 0.0)
             
             # Calculate evidence score
             evidence_score = self._calculate_score(signals, reranker_score)

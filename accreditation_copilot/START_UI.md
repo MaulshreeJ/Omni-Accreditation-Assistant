@@ -1,13 +1,26 @@
 # Starting the Omni Accreditation Copilot UI
 
-## Quick Start
+## Quick Start (Easiest Method)
+
+### Windows Users
+Simply double-click one of these files in the `accreditation_copilot` directory:
+- `start_servers.bat` (Command Prompt)
+- `start_servers.ps1` (PowerShell)
+
+This will automatically start both the backend and frontend in separate windows.
+
+## Manual Start
 
 ### Step 1: Start the Backend API
 
 Open a terminal in the `accreditation_copilot` directory and run:
 
 ```bash
+# Option 1: Using the startup script
 python run_api.py
+
+# Option 2: Using uvicorn directly
+uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
 You should see:
@@ -24,7 +37,7 @@ INFO:     Application startup complete.
 
 The API is now running at **http://localhost:8000**
 
-### Step 2: Install Frontend Dependencies
+### Step 2: Install Frontend Dependencies (First Time Only)
 
 Open a **new terminal** in the `accreditation_copilot/frontend` directory and run:
 

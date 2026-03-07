@@ -3,27 +3,120 @@
 @tailwind utilities;
  
 @layer base {
+  /* Default Theme - Quiet Night (Dark) */
   :root {
-    --background: 222.2 84% 4.9%;
+    --neon-pink: 330 100% 71%;
+    --neon-cyan: 183 79% 63%;
+    --deep-indigo: 222 47% 11%;
+    --background: 222 84% 5%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --glass-bg: 222 47% 11% / 0.7;
+    --glass-border: 183 79% 63% / 0.2;
+    --card: 222 47% 11% / 0.5;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
+    --primary: 183 79% 63%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 330 100% 71%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 217 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 330 100% 71%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --radius: 0.5rem;
+    --border: 183 79% 63% / 0.2;
+    --input: 222 47% 11% / 0.5;
+    --ring: 183 79% 63%;
+    --radius: 0.75rem;
+  }
+
+  /* Morning Light Theme */
+  [data-theme="morning-light"] {
+    --neon-pink: 35 100% 65%;
+    --neon-cyan: 45 95% 70%;
+    --deep-indigo: 40 20% 95%;
+    --background: 40 40% 98%;
+    --foreground: 30 20% 20%;
+    --glass-bg: 40 30% 95% / 0.8;
+    --glass-border: 45 80% 60% / 0.3;
+    --card: 40 30% 96% / 0.8;
+    --card-foreground: 30 20% 20%;
+    --popover: 40 30% 96%;
+    --popover-foreground: 30 20% 20%;
+    --primary: 45 90% 55%;
+    --primary-foreground: 40 20% 95%;
+    --secondary: 35 85% 60%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 30 15% 45%;
+    --accent: 35 85% 60%;
+    --accent-foreground: 40 20% 95%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 20% 95%;
+    --border: 45 60% 80% / 0.4;
+    --input: 40 30% 94% / 0.8;
+    --ring: 45 90% 55%;
+    --radius: 0.75rem;
+  }
+
+  /* Rainy Afternoon Theme */
+  [data-theme="rainy-afternoon"] {
+    --neon-pink: 200 30% 60%;
+    --neon-cyan: 190 40% 65%;
+    --deep-indigo: 210 20% 85%;
+    --background: 210 25% 92%;
+    --foreground: 210 30% 25%;
+    --glass-bg: 210 20% 88% / 0.75;
+    --glass-border: 200 35% 70% / 0.35;
+    --card: 210 20% 90% / 0.7;
+    --card-foreground: 210 30% 25%;
+    --popover: 210 20% 90%;
+    --popover-foreground: 210 30% 25%;
+    --primary: 200 45% 55%;
+    --primary-foreground: 210 20% 95%;
+    --secondary: 190 40% 60%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 210 15% 82%;
+    --muted-foreground: 210 20% 40%;
+    --accent: 200 40% 58%;
+    --accent-foreground: 210 20% 95%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 210 20% 95%;
+    --border: 200 30% 75% / 0.4;
+    --input: 210 20% 88% / 0.75;
+    --ring: 200 45% 55%;
+    --radius: 0.75rem;
+  }
+
+  /* Quiet Night Theme (same as default but explicit) */
+  [data-theme="quiet-night"] {
+    --neon-pink: 330 100% 71%;
+    --neon-cyan: 183 79% 63%;
+    --deep-indigo: 222 47% 11%;
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
+    --glass-bg: 222 47% 11% / 0.7;
+    --glass-border: 183 79% 63% / 0.2;
+    --card: 222 47% 11% / 0.5;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 183 79% 63%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 330 100% 71%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 217 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 330 100% 71%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 183 79% 63% / 0.2;
+    --input: 222 47% 11% / 0.5;
+    --ring: 183 79% 63%;
+    --radius: 0.75rem;
   }
 }
  
@@ -33,5 +126,70 @@
   }
   body {
     @apply bg-background text-foreground;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Default theme background */
+  body {
+    background: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+    min-height: 100vh;
+  }
+  
+  /* Morning Light background */
+  [data-theme="morning-light"] body {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFEAA7 50%, #FFD89B 100%);
+  }
+  
+  /* Rainy Afternoon background */
+  [data-theme="rainy-afternoon"] body {
+    background: linear-gradient(135deg, #E8EEF2 0%, #D4DCE3 50%, #C5CDD5 100%);
+  }
+  
+  /* Quiet Night background */
+  [data-theme="quiet-night"] body {
+    background: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism Card */
+  .glass-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(94, 226, 231, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  /* Neon Glow Effects */
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(94, 226, 231, 0.5);
+  }
+  
+  .glow-pink {
+    box-shadow: 0 0 20px rgba(255, 110, 199, 0.5);
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #FF6EC7 0%, #5DE2E7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Gradient Background */
+  .gradient-bg {
+    background: linear-gradient(135deg, #FF6EC7 0%, #5DE2E7 100%);
+  }
+  
+  /* Hover Glow Animation */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(94, 226, 231, 0.6);
+    transform: translateY(-2px);
   }
 }

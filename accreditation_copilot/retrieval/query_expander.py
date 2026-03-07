@@ -76,6 +76,20 @@ Return ONLY a JSON object with this exact format:
                     temperature=0.2,
                     max_tokens=500
                 )
+            except Exception as e:
+                # FIX 1: Rate limit protection
+                error_str = str(e).lower()
+                if '429' in error_str or 'rate limit' in error_str:
+                    print(f"[QUERY EXPANSION] Rate limit hit, using fallback (attempt {attempt + 1}/{max_retries + 1})")
+                    if attempt >= max_retries:
+                        return [query]  # Fallback to original query
+                    continue
+                elif attempt >= max_retries:
+                    print(f"[QUERY EXPANSION] Error after {max_retries} retries: {e}")
+                    return [query]  # Fallback to original query
+                continue
+            
+            try:
                 
                 # Extract JSON from response
                 content = response.choices[0].message.content.strip()

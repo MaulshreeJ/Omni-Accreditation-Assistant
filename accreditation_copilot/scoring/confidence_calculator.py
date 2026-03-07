@@ -43,10 +43,17 @@ class ConfidenceCalculator:
             if evidence_scores else 0.0
         )
         
-        # Average retrieval score (reranker)
+        # Average retrieval score (reranker) - handle both formats
+        total_reranker_score = 0.0
+        for r in retrieval_results:
+            score = r.get('reranker_score', 0.0)
+            if score == 0.0:
+                # Try nested format
+                score = r.get('scores', {}).get('reranker', 0.0)
+            total_reranker_score += score
+        
         avg_retrieval_score = (
-            sum(r.get('scores', {}).get('reranker', 0.0) for r in retrieval_results) / 
-            len(retrieval_results)
+            total_reranker_score / len(retrieval_results)
             if retrieval_results else 0.0
         )
         

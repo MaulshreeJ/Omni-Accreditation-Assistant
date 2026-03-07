@@ -6,11 +6,14 @@ Phase 6: Enhanced with evidence grounding, gap detection, and strength scoring.
 Performance Fix: Uses ModelManager for shared model instances.
 Runtime Reliability: Added report validation.
 Caching: Added deterministic audit caching to avoid recomputation.
+FIX 8: Added timeout protection for UI reliability.
 """
 
 import sys
 from pathlib import Path
 from typing import Dict, Any, List
+import signal
+from contextlib import contextmanager
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -24,6 +27,41 @@ from scoring.evidence_strength import EvidenceStrengthScorer
 from models.model_manager import get_model_manager
 from validation.report_validator import validate_report, safe_normalize_scores
 from cache.audit_cache import AuditCache
+
+
+# FIX 8: Timeout exception
+class AuditTimeoutError(Exception):
+    """Raised when audit exceeds timeout limit."""
+    pass
+
+
+@contextmanager
+def audit_timeout(seconds: int):
+    """
+    FIX 8: Context manager for audit timeout protection.
+    
+    Args:
+        seconds: Timeout in seconds
+        
+    Raises:
+        AuditTimeoutError: If audit exceeds timeout
+    """
+    def timeout_handler(signum, frame):
+        raise AuditTimeoutError(f"Audit exceeded {seconds} second timeout")
+    
+    # Set up signal handler (Unix-like systems only)
+    # On Windows, this will be a no-op
+    try:
+        old_handler = signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(seconds)
+        try:
+            yield
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old_handler)
+    except (AttributeError, ValueError):
+        # Windows doesn't support SIGALRM, just yield without timeout
+        yield
 
 
 class CriterionAuditor:
@@ -65,19 +103,71 @@ class CriterionAuditor:
         criterion_id: str,
         framework: str,
         query_template: str,
-        description: str
+        description: str,
+        timeout_seconds: int = 30
     ) -> Dict[str, Any]:
         """
-        Audit a single criterion with caching support.
+        Audit a single criterion with caching support and timeout protection.
         
         Args:
             criterion_id: Criterion ID (e.g., '3.2.1' or 'C5')
             framework: 'NAAC' or 'NBA'
             query_template: Query template for retrieval
             description: Criterion description
+            timeout_seconds: Maximum execution time (default: 30 seconds)
             
         Returns:
             Structured compliance result (from cache or fresh computation)
+        """
+        # FIX 8: Wrap audit execution with timeout
+        try:
+            with audit_timeout(timeout_seconds):
+                return self._execute_audit(
+                    criterion_id, framework, query_template, description
+                )
+        except AuditTimeoutError as e:
+            print(f"[TIMEOUT] {str(e)}")
+            # Return timeout response
+            return {
+                'framework': framework,
+                'criterion': criterion_id,
+                'description': description,
+                'compliance_status': 'Timeout',
+                'confidence_score': 0.0,
+                'coverage_ratio': 0.0,
+                'dimensions_covered': [],
+                'dimensions_missing': [],
+                'institution_evidence_available': False,
+                'evidence_count': 0,
+                'institution_evidence_count': 0,
+                'explanation': f'Audit exceeded {timeout_seconds} second timeout',
+                'gaps': ['Audit timed out - please retry or contact support'],
+                'recommendations': ['Retry the audit', 'Check system performance'],
+                'evidence_sources': [],
+                'dimension_grounding': [],
+                'gaps_identified': [],
+                'evidence_strength': {},
+                'full_report': {}
+            }
+    
+    def _execute_audit(
+        self,
+        criterion_id: str,
+        framework: str,
+        query_template: str,
+        description: str
+    ) -> Dict[str, Any]:
+        """
+        Internal method to execute audit logic.
+        
+        Args:
+            criterion_id: Criterion ID
+            framework: Framework name
+            query_template: Query template
+            description: Criterion description
+            
+        Returns:
+            Audit result
         """
         # Check cache if enabled
         if self.enable_cache and self.cache:
@@ -123,11 +213,15 @@ class CriterionAuditor:
         # Step 4: Enrich with audit trail
         enriched_sources = self.audit_enricher.enrich_sources(retrieval_results)
         
-        # Step 5: Extract key metrics
-        confidence_score = compliance_report.get('confidence', {}).get('overall_confidence', 0.0)
-        coverage_ratio = compliance_report.get('coverage', {}).get('coverage_ratio', 0.0)
-        dimensions_covered = compliance_report.get('coverage', {}).get('dimensions_covered', [])
-        dimensions_missing = compliance_report.get('coverage', {}).get('dimensions_missing', [])
+        # Step 5: Extract key metrics (handle both nested and flat structures)
+        confidence_score = compliance_report.get('confidence_score', 
+                                                compliance_report.get('confidence', {}).get('overall_confidence', 0.0))
+        coverage_ratio = compliance_report.get('coverage_ratio',
+                                              compliance_report.get('coverage', {}).get('coverage_ratio', 0.0))
+        dimensions_covered = compliance_report.get('dimensions_covered',
+                                                  compliance_report.get('coverage', {}).get('dimensions_covered', []))
+        dimensions_missing = compliance_report.get('dimensions_missing',
+                                                  compliance_report.get('coverage', {}).get('dimensions_missing', []))
         
         # Step 6: Determine compliance status
         compliance_status = self._determine_compliance_status(
@@ -136,11 +230,13 @@ class CriterionAuditor:
             institution_evidence_available
         )
         
-        # Step 7: Extract synthesis
+        # Step 7: Extract synthesis (handle both nested and flat structures)
         synthesis = compliance_report.get('synthesis', {})
-        explanation = synthesis.get('explanation', 'No explanation available')
-        gaps = synthesis.get('gaps', [])
-        recommendations = synthesis.get('recommendations', [])
+        explanation = compliance_report.get('evidence_summary', synthesis.get('explanation', 'No explanation available'))
+        gaps = compliance_report.get('gaps', synthesis.get('gaps', []))
+        recommendations = compliance_report.get('recommendation', synthesis.get('recommendations', []))
+        if isinstance(recommendations, str):
+            recommendations = [recommendations] if recommendations else []
         
         # Step 8: Build structured result
         result = {

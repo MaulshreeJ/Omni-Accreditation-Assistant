@@ -24,15 +24,22 @@ async def upload_files(files: List[UploadFile] = File(...)):
     """
     Upload institution documents (PDF, PNG, JPG).
     Files are saved to data/raw_docs/ for ingestion.
+    
+    FIX 4: Validates file type and size before processing.
     """
     responses = []
     upload_dir = Path(__file__).parent.parent.parent / "data" / "raw_docs"
     upload_dir.mkdir(parents=True, exist_ok=True)
     
+    # FIX 4: Validation constants
+    ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg"}
+    MAX_FILE_SIZE_MB = 20
+    MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
+    
     for file in files:
         try:
-            # Validate file type
-            allowed_extensions = {".pdf", ".png", ".jpg", ".jpeg"}
+            # FIX 4: Validate file type
+            allowed_extensions = ALLOWED_EXTENSIONS
             file_ext = Path(file.filename).suffix.lower()
             
             if file_ext not in allowed_extensions:
@@ -40,22 +47,33 @@ async def upload_files(files: List[UploadFile] = File(...)):
                     filename=file.filename,
                     size=0,
                     status="error",
-                    message=f"Invalid file type: {file_ext}"
+                    message=f"Invalid file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+                ))
+                continue
+            
+            # FIX 4: Read file and validate size
+            file_content = await file.read()
+            file_size = len(file_content)
+            
+            if file_size > MAX_FILE_SIZE_BYTES:
+                responses.append(UploadResponse(
+                    filename=file.filename,
+                    size=file_size,
+                    status="error",
+                    message=f"File too large: {file_size / (1024*1024):.1f}MB. Max: {MAX_FILE_SIZE_MB}MB"
                 ))
                 continue
             
             # Save file
             file_path = upload_dir / file.filename
             with open(file_path, "wb") as buffer:
-                shutil.copyfileobj(file.file, buffer)
-            
-            file_size = file_path.stat().st_size
+                buffer.write(file_content)
             
             responses.append(UploadResponse(
                 filename=file.filename,
                 size=file_size,
                 status="success",
-                message=f"Uploaded successfully"
+                message=f"Uploaded successfully ({file_size / 1024:.1f}KB)"
             ))
             
         except Exception as e:
@@ -71,23 +89,23 @@ async def upload_files(files: List[UploadFile] = File(...)):
 @router.post("/ingest")
 async def ingest_uploaded_files():
     """
-    Trigger ingestion pipeline for uploaded files.
-    Runs PDF processing, chunking, and indexing.
+    Trigger ingestion pipeline for uploaded institution files.
+    Runs PDF processing, chunking, and indexing for institutional documents.
     """
     try:
-        # Import ingestion modules
-        from ingestion.run_ingestion import main as run_ingestion
+        # Import institution ingestion runner
+        from ingestion.institution.run_institution_ingestion import run_institution_ingestion
         
-        # Run ingestion
-        # Note: This is a simplified version
-        # In production, use background tasks or queue
-        result = run_ingestion()
+        # Run ingestion for institution documents in data/raw_docs/
+        result = run_institution_ingestion(raw_docs_dir="data/raw_docs")
         
-        return {
-            "status": "success",
-            "message": "Ingestion completed",
-            "result": result
-        }
+        if result["status"] == "error":
+            raise HTTPException(status_code=500, detail=result["message"])
+        
+        return result
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"[INGESTION ERROR] {error_details}")
+        raise HTTPException(status_code=500, detail=f"Ingestion failed: {str(e)}")

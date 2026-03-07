@@ -227,8 +227,9 @@ class HybridRetriever:
         # Sort by fused score
         results.sort(key=lambda x: x['fused_score'], reverse=True)
         
-        # Return top-K
-        return results[:final_top_k]
+        # FIX 2: Ensure we always return a list, never None
+        final_results = results[:final_top_k]
+        return final_results if final_results else []
     
     def close(self):
         """Close resources."""
