@@ -1,0 +1,338 @@
+{
+  "framework": "NAAC",
+  "criterion": "3.2.1",
+  "description": "Research Publications and Awards",
+  "compliance_status": "Partial",
+  "confidence_score": 0.154,
+  "coverage_ratio": 1.0,
+  "dimensions_covered": [
+    "funding_amount",
+    "project_count",
+    "funding_agencies"
+  ],
+  "dimensions_missing": [],
+  "institution_evidence_available": true,
+  "evidence_count": 10,
+  "institution_evidence_count": 7,
+  "explanation": "Evidence found includes institutional self-study reports from Greenfield College of Engineering and Riverton Institute of Technology, which provide some data on extramural research funding, but Greenfield's data is incomplete. Riverton's report provides specific numbers for total research funding, externally funded projects, and funding agencies. However, the evidence is limited to these two institutions and lacks comprehensive data.",
+  "gaps": [
+    "Institutional evidence for all required dimensions",
+    "Comprehensive data on extramural research funding for multiple institutions",
+    "Specific numbers and dates for funding amounts and project counts",
+    "Documented proof from institutional records"
+  ],
+  "recommendations": [
+    "Institutions should provide detailed and comprehensive data on extramural research funding, including total funding amounts, project counts, and funding agencies, along with documented proof from institutional records to demonstrate compliance with NAAC Criterion 3.2.1."
+  ],
+  "evidence_sources": [
+    {
+      "chunk_id": "ab6de8c5-b4b3-4087-9673-e00246fb2823",
+      "source": "Greenfield_MissingEvidence_SSR.pdf",
+      "page": 1,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "text": "Greenfield College of Engineering \u2014 SSR Evidence Greenfield College of Engineering \u2013 Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 \u2013 Extramural Research Funding Metric Value Total Research Funding (2020\u20132024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 \u2013 Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 \u2013 Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 \u2013 Student Support Metric Value Scholarship Programs 1",
+      "reranker_score": 0.928,
+      "strength": "Strong"
+    },
+    {
+      "chunk_id": "60ebaa1b-2fa5-4da3-bc09-0a2e919c35a0",
+      "source": "Riverton_Bplus_SSR.pdf",
+      "page": 1,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "text": "Riverton Institute of Technology \u2014 SSR Evidence Riverton Institute of Technology \u2013 Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 \u2013 Extramural Research Funding Metric Value Total Research Funding (2020\u20132024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 \u2013 Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 \u2013 Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 \u2013 Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+      "reranker_score": 0.457,
+      "strength": "Moderate"
+    },
+    {
+      "chunk_id": "025b5ff0-cf28-43b2-aecc-bc7358ab1337",
+      "source": "NAAC_SSR_Manual_Universities.pdf",
+      "page": 128,
+      "source_type": "framework",
+      "criterion": "7.1.10",
+      "framework": "NAAC",
+      "text": "rriculum offering and the curriculum transactions. Accreditation : Certification of quality that is valid for a fixed period, which in the case of NAAC is five years Advanced Learners : Students who perform very much better than the class averages Assessment : Performance evaluation of an institution or its units based on certain established criteria Assessors : Trained academics or experts who represent NAAC on peer teams. Attainment of Course Outcomes (COs) : COs are to be attained by all students at the end of a formal course.",
+      "reranker_score": 0.791,
+      "strength": "Strong"
+    },
+    {
+      "chunk_id": "e027e107-72a3-4a17-8ba1-77489ce9f3fe",
+      "source": "Greenfield_MissingEvidence_SSR.pdf",
+      "page": 1,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "text": "Metric: Laboratories\nValue: 6",
+      "reranker_score": 0.01,
+      "strength": "Weak"
+    },
+    {
+      "chunk_id": "fd3660bc-60d3-44c6-bf06-517a146f6396",
+      "source": "Riverton_Bplus_SSR.pdf",
+      "page": 1,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "text": "Metric: Laboratories\nValue: 8",
+      "reranker_score": 0.009,
+      "strength": "Weak"
+    }
+  ],
+  "full_report": {
+    "run_id": "fa186499-6a0c-4492-b5a6-c12fac640efc",
+    "timestamp": "2026-03-07T13:24:30.996583Z",
+    "query": "What are the requirements for NAAC A+?",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "metric_name": "Extramural funding for Research",
+    "confidence_score": 0.154,
+    "compliance_status": "Insufficient",
+    "dimensions_covered": [
+      "funding_amount",
+      "project_count",
+      "funding_agencies"
+    ],
+    "dimensions_missing": [],
+    "coverage_ratio": 1.0,
+    "evidence_summary": "Evidence found includes institutional self-study reports from Greenfield College of Engineering and Riverton Institute of Technology, which provide some data on extramural research funding, but Greenfield's data is incomplete. Riverton's report provides specific numbers for total research funding, externally funded projects, and funding agencies. However, the evidence is limited to these two institutions and lacks comprehensive data.",
+    "gaps": [
+      "Institutional evidence for all required dimensions",
+      "Comprehensive data on extramural research funding for multiple institutions",
+      "Specific numbers and dates for funding amounts and project counts",
+      "Documented proof from institutional records"
+    ],
+    "recommendation": "Institutions should provide detailed and comprehensive data on extramural research funding, including total funding amounts, project counts, and funding agencies, along with documented proof from institutional records to demonstrate compliance with NAAC Criterion 3.2.1.",
+    "evidence_sources": [
+      {
+        "chunk_id": "ab6de8c5-b4b3-4087-9673-e00246fb2823",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Greenfield College of Engineering \u2014 SSR Evidence Greenfield College of Engineering \u2013 Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 \u2013 Extramural Research Funding Metric Value Total Research Funding (2020\u20132024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 \u2013 Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 \u2013 Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 \u2013 Student Support Metric Value Scholarship Programs 1",
+        "reranker_score": 0.928,
+        "strength": "Strong"
+      },
+      {
+        "chunk_id": "60ebaa1b-2fa5-4da3-bc09-0a2e919c35a0",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Riverton Institute of Technology \u2014 SSR Evidence Riverton Institute of Technology \u2013 Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 \u2013 Extramural Research Funding Metric Value Total Research Funding (2020\u20132024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 \u2013 Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 \u2013 Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 \u2013 Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+        "reranker_score": 0.457,
+        "strength": "Moderate"
+      },
+      {
+        "chunk_id": "025b5ff0-cf28-43b2-aecc-bc7358ab1337",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 128,
+        "source_type": "framework",
+        "criterion": "7.1.10",
+        "framework": "NAAC",
+        "text": "rriculum offering and the curriculum transactions. Accreditation : Certification of quality that is valid for a fixed period, which in the case of NAAC is five years Advanced Learners : Students who perform very much better than the class averages Assessment : Performance evaluation of an institution or its units based on certain established criteria Assessors : Trained academics or experts who represent NAAC on peer teams. Attainment of Course Outcomes (COs) : COs are to be attained by all students at the end of a formal course.",
+        "reranker_score": 0.791,
+        "strength": "Strong"
+      },
+      {
+        "chunk_id": "e027e107-72a3-4a17-8ba1-77489ce9f3fe",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Laboratories\nValue: 6",
+        "reranker_score": 0.01,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "fd3660bc-60d3-44c6-bf06-517a146f6396",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Laboratories\nValue: 8",
+        "reranker_score": 0.009,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "115d3326-6f1a-4fe3-8d9b-f4592883fc63",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Conference Papers\nValue: 12",
+        "reranker_score": 0.001,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "fa230235-c8b6-40d5-af4e-3466e30f9723",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Conference Papers\nValue: 21",
+        "reranker_score": 0.001,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "65546aa1-d59f-4c9a-91d4-116060215c62",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Scholarship Programs\nValue: 2",
+        "reranker_score": 0.001,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "889a6a9a-a012-412b-b9fb-88384b939022",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 8,
+        "source_type": "framework",
+        "criterion": null,
+        "framework": "NAAC",
+        "text": "nance with the overall developments in the field of education as well as the outside world, NAAC has strived to be sensitive to these and adequately reflect these in its processes. The A&A process of NAAC continue to be an exercise in partnership of NAAC with the HEI being assessed. As is known by now, the A&A process of NAAC is being revised and this revision attempts to enhance such a partnership. Over years the feedback procured from the HEIs, other stakeholders and the developments in the national scene \u2013 all have contributed in making appropriate revisions in the process so as to accelera",
+        "reranker_score": 0.002,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "a35b9dcd-23ad-487e-a306-e1b3d97807ec",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 80,
+        "source_type": "framework",
+        "criterion": "4.4.1",
+        "framework": "NAAC",
+        "text": "t Support and Progression (100) Key Indicator - 5.1 Student Support (30) Metric No. Weightage",
+        "reranker_score": 0.001,
+        "strength": "Weak"
+      }
+    ],
+    "dimension_evidence_map": {
+      "funding_amount": [
+        {
+          "chunk_id": "60ebaa1b-2fa5-4da3-bc09-0a2e919c35a0",
+          "source": null,
+          "page": null,
+          "matched_keyword": "crore"
+        }
+      ],
+      "project_count": [
+        {
+          "chunk_id": "ab6de8c5-b4b3-4087-9673-e00246fb2823",
+          "source": null,
+          "page": null,
+          "matched_keyword": "total"
+        },
+        {
+          "chunk_id": "60ebaa1b-2fa5-4da3-bc09-0a2e919c35a0",
+          "source": null,
+          "page": null,
+          "matched_keyword": "total"
+        }
+      ],
+      "funding_agencies": [
+        {
+          "chunk_id": "ab6de8c5-b4b3-4087-9673-e00246fb2823",
+          "source": null,
+          "page": null,
+          "matched_keyword": "industry"
+        }
+      ]
+    },
+    "scoring_signals": {
+      "signals_detected": [
+        "entity",
+        "keyword",
+        "numeric"
+      ],
+      "average_values": {
+        "numeric": 0.4,
+        "entity": 0.667,
+        "keyword": 0.667,
+        "structure": 0.0
+      }
+    },
+    "base_score": 0.154,
+    "avg_evidence_score": 0.11,
+    "avg_retrieval_score": 0.22,
+    "latency_ms": 851.22,
+    "num_chunks_analyzed": 10
+  },
+  "dimension_grounding": [],
+  "gaps_identified": [
+    {
+      "gap_type": "low_coverage",
+      "severity": "high",
+      "description": "Low dimension coverage: 0.0%",
+      "coverage_ratio": 0.0,
+      "recommendation": "Expand evidence to cover more required dimensions"
+    },
+    {
+      "gap_type": "low_confidence",
+      "severity": "medium",
+      "description": "Low confidence score: 0.0%",
+      "confidence_score": 0.0,
+      "recommendation": "Provide more detailed or higher-quality evidence"
+    },
+    {
+      "gap_type": "weak_evidence",
+      "severity": "medium",
+      "description": "Weak evidence quality: 0.0%",
+      "evidence_quality": 0.0,
+      "recommendation": "Improve evidence specificity and relevance"
+    }
+  ],
+  "evidence_strength": {
+    "overall_strength": "Weak",
+    "strong_count": 0,
+    "moderate_count": 1,
+    "weak_count": 6,
+    "per_chunk_strength": {
+      "ab6de8c5-b4b3-4087-9673-e00246fb2823": {
+        "strength": "Moderate",
+        "score": 0.5565221071243286,
+        "dimensions_covered": 0
+      },
+      "60ebaa1b-2fa5-4da3-bc09-0a2e919c35a0": {
+        "strength": "Weak",
+        "score": 0.2743228554725647,
+        "dimensions_covered": 0
+      },
+      "e027e107-72a3-4a17-8ba1-77489ce9f3fe": {
+        "strength": "Weak",
+        "score": 0.006150903180241585,
+        "dimensions_covered": 0
+      },
+      "fd3660bc-60d3-44c6-bf06-517a146f6396": {
+        "strength": "Weak",
+        "score": 0.00551780629903078,
+        "dimensions_covered": 0
+      },
+      "115d3326-6f1a-4fe3-8d9b-f4592883fc63": {
+        "strength": "Weak",
+        "score": 0.0003774511395022273,
+        "dimensions_covered": 0
+      },
+      "fa230235-c8b6-40d5-af4e-3466e30f9723": {
+        "strength": "Weak",
+        "score": 0.0003542389953508973,
+        "dimensions_covered": 0
+      },
+      "65546aa1-d59f-4c9a-91d4-116060215c62": {
+        "strength": "Weak",
+        "score": 0.00030736983753740785,
+        "dimensions_covered": 0
+      }
+    }
+  }
+}

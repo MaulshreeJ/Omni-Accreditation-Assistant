@@ -17,6 +17,7 @@ from retrieval.hyde_retriever import HyDERetriever
 from retrieval.reranker import Reranker
 from retrieval.index_loader import IndexLoader
 from retrieval.parent_expander import ParentExpander
+from retrieval.dual_retrieval import DualRetriever  # MILESTONE 4
 
 
 class RetrievalPipeline:
@@ -24,7 +25,7 @@ class RetrievalPipeline:
     Async orchestration of full retrieval pipeline.
     """
     
-    def __init__(self):
+    def __init__(self, enable_dual_retrieval: bool = True):
         self.router = FrameworkRouter()
         self.expander = QueryExpander()
         self.hybrid_retriever = HybridRetriever()
@@ -32,6 +33,11 @@ class RetrievalPipeline:
         self.reranker = Reranker()
         self.index_loader = IndexLoader()
         self.parent_expander = ParentExpander()
+        
+        # MILESTONE 4: Dual retrieval support
+        self.enable_dual_retrieval = enable_dual_retrieval
+        self.dual_retriever = DualRetriever() if enable_dual_retrieval else None
+        self.institution_evidence_available = False  # Track if institution evidence exists
     
     def _extract_explicit_metric(self, query: str) -> tuple:
         """
@@ -193,11 +199,13 @@ class RetrievalPipeline:
         """
         Enrich results with full metadata from database.
         
+        FIXED: Add source_type field (framework vs institution).
+        
         Args:
             results: Results with chunk_id and scores
             
         Returns:
-            Enriched results with full metadata
+            Enriched results with full metadata and source_type
         """
         enriched = []
         
@@ -205,10 +213,17 @@ class RetrievalPipeline:
             chunk = self.index_loader.get_chunk_metadata(result['chunk_id'])
             
             if chunk:
+                # FIXED: Determine source_type based on doc_type
+                # Current doc_types: 'metric', 'policy', 'prequalifier' are all framework
+                # In Phase 4, institutional documents will have doc_type = 'institutional'
+                doc_type = chunk.get('doc_type', 'policy')
+                source_type = 'institution' if doc_type == 'institutional' else 'framework'
+                
                 enriched_result = {
                     'chunk_id': result['chunk_id'],
                     'framework': chunk['framework'],
                     'doc_type': chunk['doc_type'],
+                    'source_type': source_type,  # FIXED: Correct source_type logic
                     'criterion': chunk.get('criterion'),
                     'source': chunk['source'],
                     'page': chunk['page'],
@@ -398,7 +413,7 @@ class RetrievalPipeline:
                 print(f"  {i}. {variant}")
         
         # Step 5: Candidate assembly
-        # Use tiered assembly for explicit metrics, hybrid retrieval for open queries
+        # MILESTONE 4: Use dual retrieval if enabled and not explicit metric query
         if explicit_metric:
             if verbose:
                 print(f"\nUsing tiered candidate assembly...")
@@ -413,37 +428,54 @@ class RetrievalPipeline:
                 print(f"  Tier 3 (hybrid): {sum(1 for c in candidates if c.get('tier') == 3)} chunks")
                 print(f"Candidates for reranking: {len(candidates)}")
         else:
-            # Open query - use standard hybrid + HyDE
-            if verbose:
-                print(f"\nRunning parallel retrieval...")
-            
-            hybrid_results, hyde_results = await asyncio.gather(
-                self._run_hybrid_retrieval(variants, framework, query_type, query, explicit_metric),
-                self._run_hyde_retrieval(query, framework, query_type)
-            )
-            
-            if verbose:
-                print(f"  Hybrid: {len(hybrid_results)} results")
-                print(f"  HyDE: {len(hyde_results)} results")
-            
-            # Conditional merge
-            use_hyde = self._should_use_hyde(hybrid_results, hyde_results)
-            
-            if verbose:
-                if use_hyde:
-                    avg_hybrid = np.mean([r['fused_score'] for r in hybrid_results[:10]]) if hybrid_results else 0
-                    avg_hyde = np.mean([r['dense_score'] for r in hyde_results[:10]]) if hyde_results else 0
-                    print(f"\nHyDE Decision: MERGE (HyDE avg={avg_hyde:.3f} > Hybrid avg={avg_hybrid:.3f} * 1.05)")
-                else:
-                    print(f"\nHyDE Decision: SKIP (Hybrid stronger or insufficient improvement)")
-            
-            if use_hyde:
-                candidates = self._merge_results(hybrid_results, hyde_results)
+            # Open query - check if dual retrieval is enabled
+            if self.enable_dual_retrieval and self.dual_retriever:
+                if verbose:
+                    print(f"\nRunning dual retrieval (framework + institution)...")
+                
+                # Use dual retrieval
+                candidates, self.institution_evidence_available = self.dual_retriever.retrieve(
+                    query, variants, framework, query_type,
+                    top_k_framework=3, top_k_institution=7  # Issue 11: Updated slot allocation
+                )
+                
+                if verbose:
+                    print(f"  Framework results: ~5")
+                    print(f"  Institution results: ~10")
+                    print(f"  Institution evidence available: {self.institution_evidence_available}")
+                    print(f"  Merged candidates: {len(candidates)}")
             else:
-                candidates = hybrid_results[:20]
-            
-            if verbose:
-                print(f"Candidates for reranking: {len(candidates)}")
+                # Standard hybrid + HyDE
+                if verbose:
+                    print(f"\nRunning parallel retrieval...")
+                
+                hybrid_results, hyde_results = await asyncio.gather(
+                    self._run_hybrid_retrieval(variants, framework, query_type, query, explicit_metric),
+                    self._run_hyde_retrieval(query, framework, query_type)
+                )
+                
+                if verbose:
+                    print(f"  Hybrid: {len(hybrid_results)} results")
+                    print(f"  HyDE: {len(hyde_results)} results")
+                
+                # Conditional merge
+                use_hyde = self._should_use_hyde(hybrid_results, hyde_results)
+                
+                if verbose:
+                    if use_hyde:
+                        avg_hybrid = np.mean([r['fused_score'] for r in hybrid_results[:10]]) if hybrid_results else 0
+                        avg_hyde = np.mean([r['dense_score'] for r in hyde_results[:10]]) if hyde_results else 0
+                        print(f"\nHyDE Decision: MERGE (HyDE avg={avg_hyde:.3f} > Hybrid avg={avg_hybrid:.3f} * 1.05)")
+                    else:
+                        print(f"\nHyDE Decision: SKIP (Hybrid stronger or insufficient improvement)")
+                
+                if use_hyde:
+                    candidates = self._merge_results(hybrid_results, hyde_results)
+                else:
+                    candidates = hybrid_results[:20]
+                
+                if verbose:
+                    print(f"Candidates for reranking: {len(candidates)}")
         
         # Step 8: Rerank
         if verbose:
@@ -516,6 +548,8 @@ class RetrievalPipeline:
         self.hyde_retriever.close()
         self.reranker.close()
         self.index_loader.close()
+        if self.dual_retriever:
+            self.dual_retriever.close()
 
 
 # Test function

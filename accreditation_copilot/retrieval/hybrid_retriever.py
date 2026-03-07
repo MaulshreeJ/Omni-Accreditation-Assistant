@@ -1,24 +1,26 @@
 """
 Hybrid Retriever - Phase 2
 Combines FAISS and BM25 retrieval with score fusion.
+
+Performance Fix: Uses ModelManager for shared model instances.
 """
 
 import re
 import numpy as np
 from typing import List, Dict
-from sentence_transformers import SentenceTransformer
-import torch
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from retrieval.index_loader import IndexLoader
 from retrieval.score_fusion import ScoreFusion
+from models.model_manager import get_model_manager
 
 
 class HybridRetriever:
     """
     Hybrid retrieval combining dense (FAISS) and sparse (BM25) search.
+    Uses shared models from ModelManager for performance.
     """
     
     # Index mapping
@@ -30,13 +32,20 @@ class HybridRetriever:
         ('NBA', 'prequalifier'): 'nba_prequalifier'
     }
     
-    def __init__(self, model_name: str = 'BAAI/bge-base-en-v1.5'):
+    def __init__(self, model_manager=None):
+        """
+        Initialize hybrid retriever with shared models.
+        
+        Args:
+            model_manager: Optional ModelManager instance (for testing)
+        """
         self.index_loader = IndexLoader()
         self.score_fusion = ScoreFusion()
         
-        # Load embedding model
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.model = SentenceTransformer(model_name, device=device)
+        # Get shared embedder from ModelManager
+        if model_manager is None:
+            model_manager = get_model_manager()
+        self.model = model_manager.get_embedder()
     
     def _tokenize(self, text: str) -> List[str]:
         """Simple tokenization for BM25."""
@@ -44,11 +53,79 @@ class HybridRetriever:
         tokens = re.findall(r'\b\w+\b', text)
         return tokens
     
+    def _reciprocal_rank_fusion(self, bm25_results: List[Dict], 
+                                embedding_results: List[Dict], 
+                                k: int = 60) -> List[Dict]:
+        """
+        Reciprocal Rank Fusion (RRF) for combining BM25 and embedding results.
+        
+        RRF formula: score(d) = sum(1 / (k + rank(d)))
+        
+        Args:
+            bm25_results: Results from BM25 search
+            embedding_results: Results from embedding search
+            k: Constant to prevent division by zero (default: 60)
+            
+        Returns:
+            Fused results sorted by RRF score
+        """
+        scores = {}
+        
+        # BM25 contribution
+        for rank, doc in enumerate(bm25_results, start=1):
+            doc_id = doc["chunk_id"]
+            if doc_id not in scores:
+                scores[doc_id] = {
+                    "doc": doc,
+                    "rrf_score": 0.0,
+                    "bm25_rank": None,
+                    "embedding_rank": None
+                }
+            scores[doc_id]["rrf_score"] += 1.0 / (k + rank)
+            scores[doc_id]["bm25_rank"] = rank
+        
+        # Embedding contribution
+        for rank, doc in enumerate(embedding_results, start=1):
+            doc_id = doc["chunk_id"]
+            if doc_id not in scores:
+                scores[doc_id] = {
+                    "doc": doc,
+                    "rrf_score": 0.0,
+                    "bm25_rank": None,
+                    "embedding_rank": None
+                }
+            scores[doc_id]["rrf_score"] += 1.0 / (k + rank)
+            scores[doc_id]["embedding_rank"] = rank
+            
+            # If doc wasn't in BM25 results, copy its metadata
+            if scores[doc_id]["bm25_rank"] is None:
+                scores[doc_id]["doc"] = doc
+        
+        # Sort by RRF score
+        fused = sorted(
+            scores.values(),
+            key=lambda x: x["rrf_score"],
+            reverse=True
+        )
+        
+        # Extract documents with RRF scores
+        results = []
+        for item in fused:
+            doc = item["doc"].copy()
+            doc["rrf_score"] = item["rrf_score"]
+            doc["fused_score"] = item["rrf_score"]  # For backward compatibility
+            results.append(doc)
+        
+        return results
+    
     def retrieve(self, variants: List[str], framework: str, query_type: str,
                 original_query: str, explicit_metric: str = None, 
-                top_k_per_variant: int = 15, final_top_k: int = 20) -> List[Dict]:
+                top_k_per_variant: int = 10, final_top_k: int = 30) -> List[Dict]:
         """
-        Hybrid retrieval across query variants.
+        Multi-query hybrid retrieval with RRF fusion across query variants.
+        
+        This implementation performs independent retrieval for each query variant
+        and fuses all results using RRF, which significantly improves recall.
         
         Args:
             variants: List of query variants
@@ -56,7 +133,7 @@ class HybridRetriever:
             query_type: metric, policy, or prequalifier
             original_query: Original user query (for criterion boost)
             explicit_metric: Pre-extracted explicit metric ID
-            top_k_per_variant: Results per variant
+            top_k_per_variant: Results per variant (default: 10)
             final_top_k: Final number of results to return
             
         Returns:
@@ -69,18 +146,14 @@ class HybridRetriever:
         
         index_name = self.INDEX_MAP[index_key]
         
-        # PART 1: Adaptive fusion weights based on explicit metric detection
-        if explicit_metric:
-            dense_weight = 0.85
-            bm25_weight = 0.15
-        else:
-            dense_weight = 0.70
-            bm25_weight = 0.30
+        # Limit to 3 query variants for efficiency (include original query)
+        query_variants = [original_query] + variants[:2]
         
-        # Aggregate results across variants
-        all_results = {}  # chunk_id -> best result
+        # STEP 1: Collect all BM25 and embedding results from all query variants
+        all_bm25_results = []
+        all_embedding_results = []
         
-        for variant in variants:
+        for variant in query_variants:
             # Embed variant
             embedding = self.model.encode(variant, convert_to_numpy=True)
             
@@ -97,41 +170,16 @@ class HybridRetriever:
                 index_name, tokens, top_k=top_k_per_variant
             )
             
-            # Create lookup dicts
-            dense_dict = {r['chunk_id']: r['dense_score'] for r in dense_results}
-            bm25_dict = {r['chunk_id']: r['bm25_score'] for r in bm25_results}
-            
-            # Get all unique chunk IDs
-            all_chunk_ids = set(dense_dict.keys()) | set(bm25_dict.keys())
-            
-            # Collect scores for normalization
-            dense_scores = [dense_dict.get(cid, 0.0) for cid in all_chunk_ids]
-            bm25_scores = [bm25_dict.get(cid, 0.0) for cid in all_chunk_ids]
-            
-            # Normalize
-            dense_norm = self.score_fusion.normalize_dense(dense_scores)
-            bm25_norm = self.score_fusion.normalize_bm25(bm25_scores)
-            
-            # Fuse with adaptive weights
-            fused_scores = self.score_fusion.fuse_scores(
-                dense_norm, bm25_norm, weight_dense=dense_weight
-            )
-            
-            # Store results
-            for i, chunk_id in enumerate(all_chunk_ids):
-                result = {
-                    'chunk_id': chunk_id,
-                    'dense_score': dense_dict.get(chunk_id, 0.0),
-                    'bm25_score': bm25_dict.get(chunk_id, 0.0),
-                    'fused_score': fused_scores[i]
-                }
-                
-                # Keep highest fused score per chunk
-                if chunk_id not in all_results or result['fused_score'] > all_results[chunk_id]['fused_score']:
-                    all_results[chunk_id] = result
+            # Collect results from this variant
+            all_bm25_results.extend(bm25_results)
+            all_embedding_results.extend(dense_results)
         
-        # Convert to list
-        results = list(all_results.values())
+        # STEP 2: Apply RRF fusion across all collected results
+        # This fuses results from all query variants together
+        fused_results = self._reciprocal_rank_fusion(all_bm25_results, all_embedding_results, k=60)
+        
+        # STEP 3: Limit candidates before further processing
+        results = fused_results[:final_top_k]
         
         # PART 2: Multiplicative criterion boost
         if explicit_metric:
@@ -179,8 +227,9 @@ class HybridRetriever:
         # Sort by fused score
         results.sort(key=lambda x: x['fused_score'], reverse=True)
         
-        # Return top-K
-        return results[:final_top_k]
+        # FIX 2: Ensure we always return a list, never None
+        final_results = results[:final_top_k]
+        return final_results if final_results else []
     
     def close(self):
         """Close resources."""

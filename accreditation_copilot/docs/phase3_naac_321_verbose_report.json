@@ -1,0 +1,174 @@
+{
+  "run_id": "1acbf902-a392-4a76-99cc-398a7b516321",
+  "timestamp": "2026-03-05T16:28:36.573271Z",
+  "query": "What are the requirements for NAAC 3.2.1?",
+  "framework": "NAAC",
+  "criterion": "3.2.1",
+  "metric_name": "Extramural funding for Research",
+  "confidence_score": 0.512,
+  "compliance_status": "Partial",
+  "dimensions_covered": [
+    "funding_amount",
+    "project_count",
+    "funding_agencies",
+    "time_period"
+  ],
+  "dimensions_missing": [],
+  "coverage_ratio": 1.0,
+  "evidence_summary": "The retrieved evidence consists of framework guidelines and templates from the NAAC_SSR_Manual_Universities.pdf, specifically related to extramural funding for research. However, no institutional evidence was found, as the provided texts only describe the framework and data requirements. The evidence does not demonstrate actual institutional compliance.",
+  "gaps": [
+    "Institutional data on extramural funding for research",
+    "Specific numbers and dates related to funding amounts and project counts",
+    "Documented proof from institutional records",
+    "Verifiable sources with page references"
+  ],
+  "recommendation": "Provide specific institutional data and documented proof related to extramural funding for research, including funding amounts, project counts, and durations, to demonstrate actual compliance with the NAAC 3.2.1 criterion.",
+  "evidence_sources": [
+    {
+      "chunk_id": "c842f168-ca9a-4dbb-a78c-1f11037a739c",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 63,
+      "source_type": "framework",
+      "criterion": "3.2.1",
+      "framework": "NAAC",
+      "reranker_score": 1.0
+    },
+    {
+      "chunk_id": "73d1a5ac-a424-4284-a223-54ca4b131069",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 95,
+      "source_type": "framework",
+      "criterion": "7.1.6",
+      "framework": "NAAC",
+      "reranker_score": 0.97
+    },
+    {
+      "chunk_id": "2a53939a-e9bf-43da-a45f-b3dc8c2ca530",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 59,
+      "source_type": "framework",
+      "criterion": "2.7.1",
+      "framework": "NAAC",
+      "reranker_score": 0.908
+    },
+    {
+      "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 63,
+      "source_type": "framework",
+      "criterion": "3.2.1",
+      "framework": "NAAC",
+      "reranker_score": 0.894
+    },
+    {
+      "chunk_id": "5523f7ab-dbda-4e5c-a6e4-b5ec1883bb25",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 64,
+      "source_type": "framework",
+      "criterion": "3.2.3",
+      "framework": "NAAC",
+      "reranker_score": 0.854
+    }
+  ],
+  "dimension_evidence_map": {
+    "funding_amount": [
+      {
+        "chunk_id": "c842f168-ca9a-4dbb-a78c-1f11037a739c",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "inr"
+      },
+      {
+        "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "inr"
+      },
+      {
+        "chunk_id": "5523f7ab-dbda-4e5c-a6e4-b5ec1883bb25",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 64,
+        "matched_keyword": "inr"
+      }
+    ],
+    "project_count": [
+      {
+        "chunk_id": "c842f168-ca9a-4dbb-a78c-1f11037a739c",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "total"
+      },
+      {
+        "chunk_id": "2a53939a-e9bf-43da-a45f-b3dc8c2ca530",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 59,
+        "matched_keyword": "total"
+      },
+      {
+        "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "total"
+      },
+      {
+        "chunk_id": "5523f7ab-dbda-4e5c-a6e4-b5ec1883bb25",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 64,
+        "matched_keyword": "projects funded"
+      }
+    ],
+    "funding_agencies": [
+      {
+        "chunk_id": "c842f168-ca9a-4dbb-a78c-1f11037a739c",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "dst"
+      },
+      {
+        "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "dst"
+      }
+    ],
+    "time_period": [
+      {
+        "chunk_id": "c842f168-ca9a-4dbb-a78c-1f11037a739c",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "last five years"
+      },
+      {
+        "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 63,
+        "matched_keyword": "last five years"
+      },
+      {
+        "chunk_id": "5523f7ab-dbda-4e5c-a6e4-b5ec1883bb25",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 64,
+        "matched_keyword": "last five years"
+      }
+    ]
+  },
+  "scoring_signals": {
+    "signals_detected": [
+      "entity",
+      "keyword",
+      "numeric",
+      "structure"
+    ],
+    "average_values": {
+      "numeric": 0.8,
+      "entity": 1.0,
+      "keyword": 1.0,
+      "structure": 0.833
+    }
+  },
+  "base_score": 0.512,
+  "avg_evidence_score": 0.236,
+  "avg_retrieval_score": 0.925,
+  "latency_ms": 678.61,
+  "num_chunks_analyzed": 5
+}

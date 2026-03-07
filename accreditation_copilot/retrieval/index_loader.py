@@ -21,6 +21,8 @@ class IndexLoader:
     
     def __init__(self, index_dir: str = 'indexes', db_path: str = 'data/metadata.db'):
         self.index_dir = Path(index_dir)
+        self.framework_index_dir = self.index_dir / 'framework'  # MILESTONE 1: Framework indexes
+        self.institution_index_dir = self.index_dir / 'institution'  # MILESTONE 1: Institution indexes
         self.metadata_store = MetadataStore(db_path)
         
         # Cache for loaded indices
@@ -43,8 +45,9 @@ class IndexLoader:
         if index_name in self.faiss_indices:
             return self.faiss_indices[index_name], self.faiss_mappings[index_name]
         
-        index_path = self.index_dir / f"{index_name}.index"
-        mapping_path = self.index_dir / f"{index_name}_mapping.pkl"
+        # MILESTONE 1: Look in framework directory for existing indexes
+        index_path = self.framework_index_dir / f"{index_name}.index"
+        mapping_path = self.framework_index_dir / f"{index_name}_mapping.pkl"
         
         if not index_path.exists():
             raise FileNotFoundError(f"FAISS index not found: {index_path}")
@@ -79,7 +82,7 @@ class IndexLoader:
                 self.bm25_tokenized[index_name]
             )
         
-        bm25_path = self.index_dir / f"{index_name}_bm25.pkl"
+        bm25_path = self.framework_index_dir / f"{index_name}_bm25.pkl"  # MILESTONE 1: Framework directory
         
         if not bm25_path.exists():
             raise FileNotFoundError(f"BM25 index not found: {bm25_path}")
@@ -173,6 +176,77 @@ class IndexLoader:
             Chunk dict with all metadata
         """
         return self.metadata_store.get_chunk(chunk_id)
+    
+    def load_faiss_index_institution(self, index_name: str) -> Tuple[faiss.Index, List[str]]:
+        """
+        Load FAISS index from institution directory.
+        
+        Args:
+            index_name: Name of the index (e.g., 'institution')
+            
+        Returns:
+            Tuple of (faiss_index, chunk_ids)
+        """
+        cache_key = f"institution_{index_name}"
+        if cache_key in self.faiss_indices:
+            return self.faiss_indices[cache_key], self.faiss_mappings[cache_key]
+        
+        index_path = self.institution_index_dir / f"{index_name}.index"
+        mapping_path = self.institution_index_dir / f"{index_name}_mapping.pkl"
+        
+        if not index_path.exists():
+            raise FileNotFoundError(f"Institution FAISS index not found: {index_path}")
+        
+        # Load FAISS index
+        index = faiss.read_index(str(index_path))
+        
+        # Load chunk ID mapping
+        with open(mapping_path, 'rb') as f:
+            chunk_ids = pickle.load(f)
+        
+        # Cache
+        self.faiss_indices[cache_key] = index
+        self.faiss_mappings[cache_key] = chunk_ids
+        
+        return index, chunk_ids
+    
+    def load_bm25_index_institution(self, index_name: str) -> Tuple:
+        """
+        Load BM25 index from institution directory.
+        
+        Args:
+            index_name: Name of the index (e.g., 'institution')
+            
+        Returns:
+            Tuple of (bm25_index, chunk_ids, tokenized_corpus)
+        """
+        cache_key = f"institution_{index_name}"
+        if cache_key in self.bm25_indices:
+            return (
+                self.bm25_indices[cache_key],
+                self.bm25_mappings[cache_key],
+                self.bm25_tokenized[cache_key]
+            )
+        
+        bm25_path = self.institution_index_dir / f"{index_name}_bm25.pkl"
+        
+        if not bm25_path.exists():
+            raise FileNotFoundError(f"Institution BM25 index not found: {bm25_path}")
+        
+        # Load BM25 data
+        with open(bm25_path, 'rb') as f:
+            data = pickle.load(f)
+        
+        bm25 = data['bm25']
+        chunk_ids = data['chunk_ids']
+        tokenized_corpus = data['tokenized_corpus']
+        
+        # Cache
+        self.bm25_indices[cache_key] = bm25
+        self.bm25_mappings[cache_key] = chunk_ids
+        self.bm25_tokenized[cache_key] = tokenized_corpus
+        
+        return bm25, chunk_ids, tokenized_corpus
     
     def close(self):
         """Close database connection."""

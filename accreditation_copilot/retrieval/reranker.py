@@ -1,39 +1,45 @@
 """
 Reranker - Phase 2
 Cross-encoder reranking using BGE reranker.
+
+Performance Fix: Uses ModelManager for shared model instances.
 """
 
 import torch
 import numpy as np
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from typing import List, Dict
-import tiktoken
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from retrieval.index_loader import IndexLoader
+from models.model_manager import get_model_manager
 
 
 class Reranker:
     """
     Cross-encoder reranker using BAAI/bge-reranker-base.
+    Uses shared models from ModelManager for performance.
     """
     
-    def __init__(self, model_name: str = 'BAAI/bge-reranker-base', max_length: int = 512):
+    def __init__(self, max_length: int = 512, model_manager=None):
+        """
+        Initialize reranker with shared models.
+        
+        Args:
+            max_length: Maximum sequence length
+            model_manager: Optional ModelManager instance (for testing)
+        """
         self.max_length = max_length
-        self.tokenizer_tiktoken = tiktoken.get_encoding("cl100k_base")
         
-        # Load model
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.device = device
+        # Get shared models from ModelManager
+        if model_manager is None:
+            model_manager = get_model_manager()
         
-        print(f"Loading reranker model on {device}...")
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
-        self.model.to(device)
-        self.model.eval()
-        print("Reranker model loaded.")
+        self.tokenizer_tiktoken = model_manager.get_tiktoken_tokenizer()
+        self.tokenizer = model_manager.get_reranker_tokenizer()
+        self.model = model_manager.get_reranker_model()
+        self.device = model_manager.get_device()
         
         self.index_loader = IndexLoader()
     
@@ -103,23 +109,20 @@ class Reranker:
                 
                 # Forward pass
                 outputs = self.model(**inputs)
-                logits = outputs.logits.squeeze(-1)
                 
-                # Get raw scores (no sigmoid)
-                scores = logits.cpu().numpy()
+                # Extract logits correctly - handle both 1D and 2D cases
+                logits = outputs.logits
+                if logits.dim() > 1:
+                    # If 2D, take the first column (relevance score)
+                    logits = logits[:, 0]
+                
+                # Apply sigmoid to convert logits to probabilities [0, 1]
+                scores = torch.sigmoid(logits).cpu().numpy()
                 
                 all_scores.extend(scores.tolist())
         
-        # PART 4: Min-max normalization instead of sigmoid
-        raw = np.array(all_scores)
-        min_s = raw.min()
-        max_s = raw.max()
-        
-        if max_s - min_s < 1e-8:
-            # All scores are the same
-            normalized_scores = [0.5] * len(all_scores)
-        else:
-            normalized_scores = ((raw - min_s) / (max_s - min_s)).tolist()
+        # Use sigmoid-normalized scores directly (already in [0, 1] range)
+        normalized_scores = all_scores
         
         # Add reranker scores to candidates
         for candidate, score in zip(candidates, normalized_scores):

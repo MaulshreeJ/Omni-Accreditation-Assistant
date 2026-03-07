@@ -225,11 +225,12 @@ class ParentExpander:
                 max_tokens=1200
             )
             
-            # Create enriched result (preserve all fields including chunk_id)
+            # Create enriched result (preserve all fields including chunk_id and source_type)
             enriched = {
                 'chunk_id': child.get('chunk_id'),  # Preserve chunk_id
                 'framework': child['framework'],
                 'doc_type': child['doc_type'],
+                'source_type': child.get('source_type', 'framework'),  # FIXED: Preserve source_type
                 'criterion': child.get('criterion'),
                 'source': child['source'],
                 'page': child['page'],

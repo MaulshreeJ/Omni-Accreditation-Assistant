@@ -1,0 +1,22 @@
+[
+  {
+    "query": "NAAC 3.2.1 extramural research funding",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "expected_chunks": [
+      "fa65bb57-986a-4e7d-afd9-2556b83b56c0"
+    ]
+  },
+  {
+    "query": "DST research grants and funding",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "expected_chunks": []
+  },
+  {
+    "query": "NBA Criterion 5 student support services",
+    "framework": "NBA",
+    "criterion": "C5",
+    "expected_chunks": []
+  }
+]

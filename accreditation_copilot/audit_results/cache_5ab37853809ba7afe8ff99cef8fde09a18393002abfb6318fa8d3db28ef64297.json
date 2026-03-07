@@ -1,0 +1,347 @@
+{
+  "cache_key": "5ab37853809ba7afe8ff99cef8fde09a18393002abfb6318fa8d3db28ef64297",
+  "cache_metadata": {
+    "timestamp": "2026-03-07T19:22:35.164320",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "ttl_hours": 24
+  },
+  "report": {
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "description": "Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the last five years",
+    "compliance_status": "Partial",
+    "confidence_score": 0.072,
+    "coverage_ratio": 1.0,
+    "dimensions_covered": [
+      "funding_amount",
+      "funding_agencies",
+      "project_count"
+    ],
+    "dimensions_missing": [],
+    "institution_evidence_available": true,
+    "evidence_count": 10,
+    "institution_evidence_count": 7,
+    "explanation": "Evidence found includes institutional data from Riverton Institute of Technology with specific numbers and dates for extramural research funding, but other evidence chunks lack specific institutional data. Some evidence chunks provide framework guidelines and templates. No consistent and comprehensive evidence was found across all retrieved context.",
+    "gaps": [
+      "Specific institutional data for all institutions",
+      "Documented proof from institutional records for extramural research funding",
+      "Clear mapping to all required dimensions for NAAC 3.2.1",
+      "Verifiable sources with page references"
+    ],
+    "recommendations": [
+      "Institutions should provide detailed and specific evidence of extramural research funding, including numbers, dates, and documented proof from institutional records, to demonstrate compliance with NAAC 3.2.1"
+    ],
+    "evidence_sources": [
+      {
+        "chunk_id": "508e59bf-6912-4165-8478-38971222249f",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Riverton Institute of Technology — SSR Evidence Riverton Institute of Technology – Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 – Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 – Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+        "reranker_score": 0.544,
+        "strength": "Moderate"
+      },
+      {
+        "chunk_id": "01aa4910-b6b2-43e5-a16f-58247ad4ff22",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Greenfield College of Engineering — SSR Evidence Greenfield College of Engineering – Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 – Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 – Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 1",
+        "reranker_score": 0.023,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "4033d844-bb7a-4207-92c1-3df4a6723aec",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 31,
+        "source_type": "framework",
+        "criterion": null,
+        "framework": "NAAC",
+        "text": "equirements (MIR) to volunteer for second, third or fourth cycle accreditation. Institutions intending to be assessed to continue their accreditation need to apply afresh by submission of A&A application during the last six months of their validity period. The validity period of NAAC accreditation for third / fourth cycle institutions will be extended from five years to seven years, with a condition that they have obtained highest grade for immediate preceding two cycles continuously, in addition provided the institution again obtains highest grade in the third / fourth cycle also.",
+        "reranker_score": 0.101,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "889a6a9a-a012-412b-b9fb-88384b939022",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 8,
+        "source_type": "framework",
+        "criterion": null,
+        "framework": "NAAC",
+        "text": "nance with the overall developments in the field of education as well as the outside world, NAAC has strived to be sensitive to these and adequately reflect these in its processes. The A&A process of NAAC continue to be an exercise in partnership of NAAC with the HEI being assessed. As is known by now, the A&A process of NAAC is being revised and this revision attempts to enhance such a partnership. Over years the feedback procured from the HEIs, other stakeholders and the developments in the national scene – all have contributed in making appropriate revisions in the process so as to accelera",
+        "reranker_score": 0.034,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "2e3c702b-ae5b-425f-9bda-3a6bb01a8ea0",
+        "source": "NAAC_SSR_Manual_Universities.pdf",
+        "page": 1,
+        "source_type": "framework",
+        "criterion": null,
+        "framework": "NAAC",
+        "text": "[PAGE_1]\nNAAC for Quality and Excellence in Higher Education 12\n\n[PAGE_2]\nManual for Universities NAAC for Quality and Excellence in Higher Education PREFACE It is heartening that National Assessment and Accreditation Council (NAAC) has brought in new spirit into its process of assessment and accreditation. This has been attempted as a continuance of the NAAC’s concern for ensuring that its processes are in tune with local, regional and global changes in higher education scenario. The main focus of the revision process has been to enhance the redeeming features of the accreditation process and",
+        "reranker_score": 0.007,
+        "strength": "Weak"
+      }
+    ],
+    "full_report": {
+      "run_id": "77159719-07e6-4236-b61c-810f6d0d4dc4",
+      "timestamp": "2026-03-07T13:52:35.158320Z",
+      "query": "How can we from NAAC B+ to NAAC A+",
+      "framework": "NAAC",
+      "criterion": "3.2.1",
+      "metric_name": "Extramural funding for Research",
+      "confidence_score": 0.072,
+      "compliance_status": "Insufficient",
+      "dimensions_covered": [
+        "funding_amount",
+        "funding_agencies",
+        "project_count"
+      ],
+      "dimensions_missing": [],
+      "coverage_ratio": 1.0,
+      "evidence_summary": "Evidence found includes institutional data from Riverton Institute of Technology with specific numbers and dates for extramural research funding, but other evidence chunks lack specific institutional data. Some evidence chunks provide framework guidelines and templates. No consistent and comprehensive evidence was found across all retrieved context.",
+      "gaps": [
+        "Specific institutional data for all institutions",
+        "Documented proof from institutional records for extramural research funding",
+        "Clear mapping to all required dimensions for NAAC 3.2.1",
+        "Verifiable sources with page references"
+      ],
+      "recommendation": "Institutions should provide detailed and specific evidence of extramural research funding, including numbers, dates, and documented proof from institutional records, to demonstrate compliance with NAAC 3.2.1",
+      "evidence_sources": [
+        {
+          "chunk_id": "508e59bf-6912-4165-8478-38971222249f",
+          "source": "Riverton_Bplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Riverton Institute of Technology — SSR Evidence Riverton Institute of Technology – Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 – Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 – Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+          "reranker_score": 0.544,
+          "strength": "Moderate"
+        },
+        {
+          "chunk_id": "01aa4910-b6b2-43e5-a16f-58247ad4ff22",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Greenfield College of Engineering — SSR Evidence Greenfield College of Engineering – Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 – Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 – Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 1",
+          "reranker_score": 0.023,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "4033d844-bb7a-4207-92c1-3df4a6723aec",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 31,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "text": "equirements (MIR) to volunteer for second, third or fourth cycle accreditation. Institutions intending to be assessed to continue their accreditation need to apply afresh by submission of A&A application during the last six months of their validity period. The validity period of NAAC accreditation for third / fourth cycle institutions will be extended from five years to seven years, with a condition that they have obtained highest grade for immediate preceding two cycles continuously, in addition provided the institution again obtains highest grade in the third / fourth cycle also.",
+          "reranker_score": 0.101,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "889a6a9a-a012-412b-b9fb-88384b939022",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 8,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "text": "nance with the overall developments in the field of education as well as the outside world, NAAC has strived to be sensitive to these and adequately reflect these in its processes. The A&A process of NAAC continue to be an exercise in partnership of NAAC with the HEI being assessed. As is known by now, the A&A process of NAAC is being revised and this revision attempts to enhance such a partnership. Over years the feedback procured from the HEIs, other stakeholders and the developments in the national scene – all have contributed in making appropriate revisions in the process so as to accelera",
+          "reranker_score": 0.034,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "2e3c702b-ae5b-425f-9bda-3a6bb01a8ea0",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 1,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "text": "[PAGE_1]\nNAAC for Quality and Excellence in Higher Education 12\n\n[PAGE_2]\nManual for Universities NAAC for Quality and Excellence in Higher Education PREFACE It is heartening that National Assessment and Accreditation Council (NAAC) has brought in new spirit into its process of assessment and accreditation. This has been attempted as a continuance of the NAAC’s concern for ensuring that its processes are in tune with local, regional and global changes in higher education scenario. The main focus of the revision process has been to enhance the redeeming features of the accreditation process and",
+          "reranker_score": 0.007,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "78661e64-1d55-43b8-9c9a-8a015d2eef1a",
+          "source": "Riverton_Bplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Laboratories\nValue: 8",
+          "reranker_score": 0.001,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "cf8761fc-4106-44c1-bae7-0509a9c604c3",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Laboratories\nValue: 6",
+          "reranker_score": 0.001,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "70050ce8-d1b6-497e-b79f-673fa3ea2532",
+          "source": "Riverton_Bplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Conference Papers\nValue: 21",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "86f49c51-1c1f-4034-a42f-01510f0ddaf3",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Conference Papers\nValue: 12",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "96035a33-c10d-47a8-b7b3-187779c61716",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Funding Agencies\nValue: Not available",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        }
+      ],
+      "dimension_evidence_map": {
+        "funding_amount": [
+          {
+            "chunk_id": "508e59bf-6912-4165-8478-38971222249f",
+            "source": null,
+            "page": null,
+            "matched_keyword": "crore"
+          }
+        ],
+        "project_count": [
+          {
+            "chunk_id": "508e59bf-6912-4165-8478-38971222249f",
+            "source": null,
+            "page": null,
+            "matched_keyword": "total"
+          },
+          {
+            "chunk_id": "01aa4910-b6b2-43e5-a16f-58247ad4ff22",
+            "source": null,
+            "page": null,
+            "matched_keyword": "total"
+          }
+        ],
+        "funding_agencies": [
+          {
+            "chunk_id": "01aa4910-b6b2-43e5-a16f-58247ad4ff22",
+            "source": null,
+            "page": null,
+            "matched_keyword": "industry"
+          }
+        ]
+      },
+      "scoring_signals": {
+        "signals_detected": [
+          "entity",
+          "keyword",
+          "numeric"
+        ],
+        "average_values": {
+          "numeric": 0.4,
+          "entity": 0.667,
+          "keyword": 0.667,
+          "structure": 0.0
+        }
+      },
+      "base_score": 0.072,
+      "avg_evidence_score": 0.073,
+      "avg_retrieval_score": 0.071,
+      "latency_ms": 969.06,
+      "num_chunks_analyzed": 10
+    },
+    "dimension_grounding": [],
+    "gaps_identified": [
+      {
+        "gap_type": "low_coverage",
+        "severity": "high",
+        "description": "Low dimension coverage: 0.0%",
+        "coverage_ratio": 0.0,
+        "recommendation": "Expand evidence to cover more required dimensions"
+      },
+      {
+        "gap_type": "low_confidence",
+        "severity": "medium",
+        "description": "Low confidence score: 0.0%",
+        "confidence_score": 0.0,
+        "recommendation": "Provide more detailed or higher-quality evidence"
+      },
+      {
+        "gap_type": "weak_evidence",
+        "severity": "medium",
+        "description": "Weak evidence quality: 0.0%",
+        "evidence_quality": 0.0,
+        "recommendation": "Improve evidence specificity and relevance"
+      }
+    ],
+    "evidence_strength": {
+      "overall_strength": "Weak",
+      "strong_count": 0,
+      "moderate_count": 0,
+      "weak_count": 7,
+      "per_chunk_strength": {
+        "508e59bf-6912-4165-8478-38971222249f": {
+          "strength": "Weak",
+          "score": 0.3263078212738037,
+          "dimensions_covered": 0
+        },
+        "01aa4910-b6b2-43e5-a16f-58247ad4ff22": {
+          "strength": "Weak",
+          "score": 0.013861145451664924,
+          "dimensions_covered": 0
+        },
+        "78661e64-1d55-43b8-9c9a-8a015d2eef1a": {
+          "strength": "Weak",
+          "score": 0.00048388276482000945,
+          "dimensions_covered": 0
+        },
+        "cf8761fc-4106-44c1-bae7-0509a9c604c3": {
+          "strength": "Weak",
+          "score": 0.0004826693097129464,
+          "dimensions_covered": 0
+        },
+        "70050ce8-d1b6-497e-b79f-673fa3ea2532": {
+          "strength": "Weak",
+          "score": 0.00011200980807188898,
+          "dimensions_covered": 0
+        },
+        "86f49c51-1c1f-4034-a42f-01510f0ddaf3": {
+          "strength": "Weak",
+          "score": 9.468142816331238e-05,
+          "dimensions_covered": 0
+        },
+        "96035a33-c10d-47a8-b7b3-187779c61716": {
+          "strength": "Weak",
+          "score": 2.245456853415817e-05,
+          "dimensions_covered": 0
+        }
+      }
+    }
+  }
+}

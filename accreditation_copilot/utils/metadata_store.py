@@ -39,9 +39,18 @@ class MetadataStore:
                 chunk_order INTEGER DEFAULT 0,
                 source TEXT NOT NULL,
                 text TEXT NOT NULL,
+                source_type TEXT DEFAULT 'framework',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
+        
+        # Add source_type column if it doesn't exist (migration)
+        try:
+            cursor.execute('ALTER TABLE chunks ADD COLUMN source_type TEXT DEFAULT "framework"')
+            self.conn.commit()
+        except sqlite3.OperationalError:
+            # Column already exists
+            pass
         
         # Create indices for faster queries
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_framework ON chunks(framework)')
@@ -67,8 +76,8 @@ class MetadataStore:
             cursor.execute('''
                 INSERT INTO chunks (
                     chunk_id, framework, doc_type, criterion, 
-                    tier, stage, page, chunk_order, source, text
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    tier, stage, page, chunk_order, source, text, source_type
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
                 chunk['chunk_id'],
                 chunk['framework'],
@@ -79,7 +88,8 @@ class MetadataStore:
                 chunk['page'],
                 chunk.get('chunk_order', 0),
                 chunk['source'],
-                chunk['text']
+                chunk['text'],
+                chunk.get('source_type', 'framework')
             ))
             
             self.conn.commit()
@@ -109,8 +119,8 @@ class MetadataStore:
                     cursor.execute('''
                         INSERT INTO chunks (
                             chunk_id, framework, doc_type, criterion, 
-                            tier, stage, page, chunk_order, source, text
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            tier, stage, page, chunk_order, source, text, source_type
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     ''', (
                         chunk['chunk_id'],
                         chunk['framework'],
@@ -121,7 +131,8 @@ class MetadataStore:
                         chunk['page'],
                         chunk.get('chunk_order', 0),
                         chunk['source'],
-                        chunk['text']
+                        chunk['text'],
+                        chunk.get('source_type', 'framework')
                     ))
                     inserted += 1
                 except Exception as e:

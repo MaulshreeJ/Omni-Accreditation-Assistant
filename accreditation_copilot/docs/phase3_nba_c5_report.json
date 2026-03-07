@@ -1,0 +1,180 @@
+{
+  "run_id": "069251ce-c78e-426e-bf0a-297f3db35ae8",
+  "timestamp": "2026-03-05T16:40:26.334853Z",
+  "query": "What are the NBA Tier-II faculty requirements for Criterion 5?",
+  "framework": "NBA",
+  "criterion": "C5",
+  "metric_name": "Faculty Information and Contributions",
+  "confidence_score": 0.472,
+  "compliance_status": "Weak",
+  "dimensions_covered": [
+    "experience",
+    "faculty_qualifications",
+    "faculty_count",
+    "research_contributions"
+  ],
+  "dimensions_missing": [],
+  "coverage_ratio": 1.0,
+  "evidence_summary": "The retrieved evidence includes guidelines and templates related to faculty information and contributions, such as faculty qualifications, experience, and research contributions. However, the evidence lacks specific institutional data and documented proof from institutional records. The evidence primarily consists of framework guidelines and templates.",
+  "gaps": [
+    "Specific institutional data with numbers and dates",
+    "Documented proof from institutional records",
+    "Clear mapping to all required dimensions",
+    "Verifiable sources with page references"
+  ],
+  "recommendation": "The institution should provide specific data and evidence related to faculty information and contributions, such as faculty qualifications, experience, and research contributions, and ensure that the evidence is properly documented and verifiable.",
+  "evidence_sources": [
+    {
+      "chunk_id": "2139576f-4f44-45ba-aba4-0036484f9728",
+      "source_path": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+      "page_number": 15,
+      "source_type": "framework",
+      "criterion": "C5",
+      "framework": "NBA",
+      "reranker_score": 1.0
+    },
+    {
+      "chunk_id": "a527532e-c22e-4342-b87a-58c74e2dbaf7",
+      "source_path": "NBA_SAR_TIER2.pdf",
+      "page_number": 29,
+      "source_type": "framework",
+      "criterion": "C5",
+      "framework": "NBA",
+      "reranker_score": 0.864
+    },
+    {
+      "chunk_id": "1a43f027-53cc-43fc-8d68-514926504387",
+      "source_path": "NBA_SAR_TIER2.pdf",
+      "page_number": 29,
+      "source_type": "framework",
+      "criterion": "C5",
+      "framework": "NBA",
+      "reranker_score": 0.855
+    },
+    {
+      "chunk_id": "74b3ef5f-8f7a-46ee-8062-b50138110bf6",
+      "source_path": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+      "page_number": 16,
+      "source_type": "framework",
+      "criterion": "C5",
+      "framework": "NBA",
+      "reranker_score": 0.721
+    },
+    {
+      "chunk_id": "cf1e88a9-cd32-4f61-a368-6f825b6d1f00",
+      "source_path": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+      "page_number": 15,
+      "source_type": "framework",
+      "criterion": "C5",
+      "framework": "NBA",
+      "reranker_score": 0.569
+    }
+  ],
+  "dimension_evidence_map": {
+    "faculty_qualifications": [
+      {
+        "chunk_id": "2139576f-4f44-45ba-aba4-0036484f9728",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "qualification"
+      },
+      {
+        "chunk_id": "a527532e-c22e-4342-b87a-58c74e2dbaf7",
+        "source": "NBA_SAR_TIER2.pdf",
+        "page": 29,
+        "matched_keyword": "qualification"
+      },
+      {
+        "chunk_id": "1a43f027-53cc-43fc-8d68-514926504387",
+        "source": "NBA_SAR_TIER2.pdf",
+        "page": 29,
+        "matched_keyword": "qualification"
+      },
+      {
+        "chunk_id": "cf1e88a9-cd32-4f61-a368-6f825b6d1f00",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "phd"
+      }
+    ],
+    "faculty_count": [
+      {
+        "chunk_id": "a527532e-c22e-4342-b87a-58c74e2dbaf7",
+        "source": "NBA_SAR_TIER2.pdf",
+        "page": 29,
+        "matched_keyword": "number of faculty"
+      }
+    ],
+    "experience": [
+      {
+        "chunk_id": "2139576f-4f44-45ba-aba4-0036484f9728",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "years"
+      },
+      {
+        "chunk_id": "a527532e-c22e-4342-b87a-58c74e2dbaf7",
+        "source": "NBA_SAR_TIER2.pdf",
+        "page": 29,
+        "matched_keyword": "experience"
+      },
+      {
+        "chunk_id": "1a43f027-53cc-43fc-8d68-514926504387",
+        "source": "NBA_SAR_TIER2.pdf",
+        "page": 29,
+        "matched_keyword": "experience"
+      },
+      {
+        "chunk_id": "74b3ef5f-8f7a-46ee-8062-b50138110bf6",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 16,
+        "matched_keyword": "years"
+      },
+      {
+        "chunk_id": "cf1e88a9-cd32-4f61-a368-6f825b6d1f00",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "years"
+      }
+    ],
+    "research_contributions": [
+      {
+        "chunk_id": "2139576f-4f44-45ba-aba4-0036484f9728",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "research"
+      },
+      {
+        "chunk_id": "74b3ef5f-8f7a-46ee-8062-b50138110bf6",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 16,
+        "matched_keyword": "research"
+      },
+      {
+        "chunk_id": "cf1e88a9-cd32-4f61-a368-6f825b6d1f00",
+        "source": "Evaluation_guidelines_UG_first_cycle_tier2.pdf",
+        "page": 15,
+        "matched_keyword": "research"
+      }
+    ]
+  },
+  "scoring_signals": {
+    "signals_detected": [
+      "entity",
+      "keyword",
+      "numeric",
+      "structure"
+    ],
+    "average_values": {
+      "numeric": 0.2,
+      "entity": 1.0,
+      "keyword": 1.0,
+      "structure": 0.5
+    }
+  },
+  "base_score": 0.472,
+  "avg_evidence_score": 0.252,
+  "avg_retrieval_score": 0.802,
+  "latency_ms": 631.36,
+  "num_chunks_analyzed": 5
+}

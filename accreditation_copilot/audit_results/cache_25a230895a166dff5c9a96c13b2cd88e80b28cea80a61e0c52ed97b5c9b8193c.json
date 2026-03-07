@@ -1,0 +1,379 @@
+{
+  "cache_key": "25a230895a166dff5c9a96c13b2cd88e80b28cea80a61e0c52ed97b5c9b8193c",
+  "cache_metadata": {
+    "timestamp": "2026-03-07T23:06:44.639148",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "ttl_hours": 24
+  },
+  "report": {
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "description": "Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the last five years",
+    "compliance_status": "Partial",
+    "confidence_score": 0.056,
+    "coverage_ratio": 1.0,
+    "dimensions_covered": [
+      "project_count",
+      "funding_amount",
+      "funding_agencies"
+    ],
+    "dimensions_missing": [],
+    "institution_evidence_available": true,
+    "evidence_count": 10,
+    "institution_evidence_count": 7,
+    "explanation": "Evidence found includes institutional self-study reports from Riverton Institute of Technology, Greenfield College of Engineering, and North Valley University, which provide data on extramural research funding, externally funded projects, and funding agencies. However, some reports lack specific details, such as total research funding and funding agencies. Additionally, some evidence chunks only provide metric values for conference papers.",
+    "gaps": [
+      "Specific institutional data with numbers and dates for all institutions",
+      "Documented proof from institutional records for Greenfield College of Engineering",
+      "Clear mapping to all required dimensions for all evidence chunks",
+      "Verifiable sources with page references for all evidence chunks"
+    ],
+    "recommendations": [
+      "Institutions should provide detailed and verifiable evidence of extramural research funding, including total research funding, externally funded projects, and funding agencies. Additionally, institutions should ensure that all evidence chunks are properly documented and referenced to facilitate verification."
+    ],
+    "evidence_sources": [
+      {
+        "chunk_id": "2c26406d-af6f-4eaf-b607-3ddc44095957",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Riverton Institute of Technology — SSR Evidence Riverton Institute of Technology – Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 – Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 – Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+        "reranker_score": 0.001,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "f6b5c1f5-1811-4b11-b208-7eb1e02435b4",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Greenfield College of Engineering — SSR Evidence Greenfield College of Engineering – Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 – Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 – Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 1",
+        "reranker_score": 0.0,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "d4f01b54-faf7-4946-ab2b-3d39061cf9ae",
+        "source": "NorthValley_Almost_Aplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "North Valley University — SSR Evidence North Valley University – Institutional Self Study Report (SSR). Current NAAC Grade: A. The institution demonstrates strong research output and infrastructure but seeks improvements to reach A+. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I4.8 Crore Externally Funded Projects 26 Funding Agencies DST, DBT, UGC Criterion 3.3 – Research Publications Metric Value Total Publications 148 Scopus Indexed 84 Conference Papers 40 Criterion 4.1 – Infrastructure Metric Value Laboratories 18 Smart Classrooms 24 Digital Library Books 38,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 6 Career Counselling Cell Advanced Career Development Center",
+        "reranker_score": 0.0,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "cd1e6eb8-3ec0-4f16-9a9e-0e0290125ec4",
+        "source": "Greenfield_MissingEvidence_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Conference Papers\nValue: 12",
+        "reranker_score": 0.0,
+        "strength": "Weak"
+      },
+      {
+        "chunk_id": "a85b5826-f785-4349-9580-2a66a455a948",
+        "source": "Riverton_Bplus_SSR.pdf",
+        "page": 1,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "text": "Metric: Conference Papers\nValue: 21",
+        "reranker_score": 0.0,
+        "strength": "Weak"
+      }
+    ],
+    "full_report": {
+      "run_id": "fcc27a38-91a8-4d29-98b2-499b24c888ca",
+      "timestamp": "2026-03-07T17:36:44.633095Z",
+      "query": "Is my document missing evidence?",
+      "framework": "NAAC",
+      "criterion": "3.2.1",
+      "metric_name": "Extramural funding for Research",
+      "confidence_score": 0.056,
+      "compliance_status": "Insufficient",
+      "dimensions_covered": [
+        "project_count",
+        "funding_amount",
+        "funding_agencies"
+      ],
+      "dimensions_missing": [],
+      "coverage_ratio": 1.0,
+      "evidence_summary": "Evidence found includes institutional self-study reports from Riverton Institute of Technology, Greenfield College of Engineering, and North Valley University, which provide data on extramural research funding, externally funded projects, and funding agencies. However, some reports lack specific details, such as total research funding and funding agencies. Additionally, some evidence chunks only provide metric values for conference papers.",
+      "gaps": [
+        "Specific institutional data with numbers and dates for all institutions",
+        "Documented proof from institutional records for Greenfield College of Engineering",
+        "Clear mapping to all required dimensions for all evidence chunks",
+        "Verifiable sources with page references for all evidence chunks"
+      ],
+      "recommendation": "Institutions should provide detailed and verifiable evidence of extramural research funding, including total research funding, externally funded projects, and funding agencies. Additionally, institutions should ensure that all evidence chunks are properly documented and referenced to facilitate verification.",
+      "evidence_sources": [
+        {
+          "chunk_id": "2c26406d-af6f-4eaf-b607-3ddc44095957",
+          "source": "Riverton_Bplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Riverton Institute of Technology — SSR Evidence Riverton Institute of Technology – Institutional Self Study Report (SSR). Current NAAC Grade: B+. The institution focuses on undergraduate engineering education with moderate research activity. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I1.2 Crore Externally Funded Projects 8 Funding Agencies UGC, AICTE Criterion 3.3 – Research Publications Metric Value Total Publications 45 Scopus Indexed 12 Conference Papers 21 Criterion 4.1 – Infrastructure Metric Value Laboratories 8 Smart Classrooms 10 Digital Library Books 10,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 2 Career Counselling Cell Available",
+          "reranker_score": 0.001,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "f6b5c1f5-1811-4b11-b208-7eb1e02435b4",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Greenfield College of Engineering — SSR Evidence Greenfield College of Engineering – Institutional Self Study Report (SSR). Current NAAC Grade: B. The institution has strong teaching programs but lacks research funding and industry collaboration evidence. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) Not documented Externally Funded Projects Not reported Funding Agencies Not available Criterion 3.3 – Research Publications Metric Value Total Publications 28 Scopus Indexed 6 Conference Papers 12 Criterion 4.1 – Infrastructure Metric Value Laboratories 6 Smart Classrooms 7 Digital Library Books 6,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 1",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "d4f01b54-faf7-4946-ab2b-3d39061cf9ae",
+          "source": "NorthValley_Almost_Aplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "North Valley University — SSR Evidence North Valley University – Institutional Self Study Report (SSR). Current NAAC Grade: A. The institution demonstrates strong research output and infrastructure but seeks improvements to reach A+. Criterion 3.2 – Extramural Research Funding Metric Value Total Research Funding (2020–2024) I4.8 Crore Externally Funded Projects 26 Funding Agencies DST, DBT, UGC Criterion 3.3 – Research Publications Metric Value Total Publications 148 Scopus Indexed 84 Conference Papers 40 Criterion 4.1 – Infrastructure Metric Value Laboratories 18 Smart Classrooms 24 Digital Library Books 38,000 Criterion 5.1 – Student Support Metric Value Scholarship Programs 6 Career Counselling Cell Advanced Career Development Center",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "cd1e6eb8-3ec0-4f16-9a9e-0e0290125ec4",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Conference Papers\nValue: 12",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "a85b5826-f785-4349-9580-2a66a455a948",
+          "source": "Riverton_Bplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Conference Papers\nValue: 21",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "6663de5f-9665-425c-a5c0-3f3febe3fc19",
+          "source": "Greenfield_MissingEvidence_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Funding Agencies\nValue: Not available",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "fb85a819-7201-4b92-a016-ada91c5e01ed",
+          "source": "NorthValley_Almost_Aplus_SSR.pdf",
+          "page": 1,
+          "source_type": "institution",
+          "criterion": null,
+          "framework": "INSTITUTION",
+          "text": "Metric: Conference Papers\nValue: 40",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "ab2698b7-10b4-4e89-a5eb-ce9059f6bf97",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 53,
+          "source_type": "framework",
+          "criterion": "2.1.1",
+          "framework": "NAAC",
+          "text": "age of Last five years) based on Data Template upload the document",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "831e172d-1366-47c3-9c69-a3bf42c45dfb",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 126,
+          "source_type": "framework",
+          "criterion": "7.1.10",
+          "framework": "NAAC",
+          "text": "e data included in this Self-Study Report (SSR) are true to the best of my knowledge. This SSR is prepared by the institution after internal discussions, and no part thereof has been outsourced. I am aware that the Peer Team will validate the information provided in this SSR during the peer team visit. Signature of the Head of the institution with seal: Place: Date:\n\n[PAGE_127]\nManual for Universities NAAC for Quality and Excellence in Higher Education Section C: Appendices 1. Glossary & Notes 2. Abbreviations\n\n[PAGE_128]",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        },
+        {
+          "chunk_id": "1346738d-2360-4ebb-ab01-3d2d9066246c",
+          "source": "NAAC_SSR_Manual_Universities.pdf",
+          "page": 36,
+          "source_type": "framework",
+          "criterion": null,
+          "framework": "NAAC",
+          "text": "tion’s (HEI’s) to upload the SSR along with other relevant documents on Institutional website. Thus it is suggested to create a separate NAAC tab/link on Higher Educational Institution’s (HEI’s) website and upload following documents till the validity period of Accreditation is over: 1) SSR submitted online, to be uploaded after DVV process only (.pdf format). 2) Data templates which are uploaded along with SSR. 3) Annual Quality Assurance Report (AQAR – Year wise). 4) Accreditation outcome document viz., Certificate, Grade sheet, etc.",
+          "reranker_score": 0.0,
+          "strength": "Weak"
+        }
+      ],
+      "dimension_evidence_map": {
+        "funding_amount": [
+          {
+            "chunk_id": "2c26406d-af6f-4eaf-b607-3ddc44095957",
+            "source": null,
+            "page": null,
+            "matched_keyword": "crore"
+          },
+          {
+            "chunk_id": "d4f01b54-faf7-4946-ab2b-3d39061cf9ae",
+            "source": null,
+            "page": null,
+            "matched_keyword": "crore"
+          }
+        ],
+        "project_count": [
+          {
+            "chunk_id": "2c26406d-af6f-4eaf-b607-3ddc44095957",
+            "source": null,
+            "page": null,
+            "matched_keyword": "total"
+          },
+          {
+            "chunk_id": "f6b5c1f5-1811-4b11-b208-7eb1e02435b4",
+            "source": null,
+            "page": null,
+            "matched_keyword": "total"
+          },
+          {
+            "chunk_id": "d4f01b54-faf7-4946-ab2b-3d39061cf9ae",
+            "source": null,
+            "page": null,
+            "matched_keyword": "total"
+          }
+        ],
+        "funding_agencies": [
+          {
+            "chunk_id": "f6b5c1f5-1811-4b11-b208-7eb1e02435b4",
+            "source": null,
+            "page": null,
+            "matched_keyword": "industry"
+          },
+          {
+            "chunk_id": "d4f01b54-faf7-4946-ab2b-3d39061cf9ae",
+            "source": null,
+            "page": null,
+            "matched_keyword": "dst"
+          }
+        ],
+        "time_period": [
+          {
+            "chunk_id": "ab2698b7-10b4-4e89-a5eb-ce9059f6bf97",
+            "source": null,
+            "page": null,
+            "matched_keyword": "last five years"
+          },
+          {
+            "chunk_id": "1346738d-2360-4ebb-ab01-3d2d9066246c",
+            "source": null,
+            "page": null,
+            "matched_keyword": "year wise"
+          }
+        ]
+      },
+      "scoring_signals": {
+        "signals_detected": [
+          "entity",
+          "keyword",
+          "numeric"
+        ],
+        "average_values": {
+          "numeric": 0.4,
+          "entity": 0.834,
+          "keyword": 0.667,
+          "structure": 0.0
+        }
+      },
+      "base_score": 0.056,
+      "avg_evidence_score": 0.093,
+      "avg_retrieval_score": 0.0,
+      "latency_ms": 803.01,
+      "num_chunks_analyzed": 10
+    },
+    "dimension_grounding": [],
+    "gaps_identified": [
+      {
+        "gap_type": "low_coverage",
+        "severity": "high",
+        "description": "Low dimension coverage: 0.0%",
+        "coverage_ratio": 0.0,
+        "recommendation": "Expand evidence to cover more required dimensions"
+      },
+      {
+        "gap_type": "low_confidence",
+        "severity": "medium",
+        "description": "Low confidence score: 0.0%",
+        "confidence_score": 0.0,
+        "recommendation": "Provide more detailed or higher-quality evidence"
+      },
+      {
+        "gap_type": "weak_evidence",
+        "severity": "medium",
+        "description": "Weak evidence quality: 0.0%",
+        "evidence_quality": 0.0,
+        "recommendation": "Improve evidence specificity and relevance"
+      }
+    ],
+    "evidence_strength": {
+      "overall_strength": "Weak",
+      "strong_count": 0,
+      "moderate_count": 0,
+      "weak_count": 7,
+      "per_chunk_strength": {
+        "2c26406d-af6f-4eaf-b607-3ddc44095957": {
+          "strength": "Weak",
+          "score": 0.0005291802110150456,
+          "dimensions_covered": 0
+        },
+        "f6b5c1f5-1811-4b11-b208-7eb1e02435b4": {
+          "strength": "Weak",
+          "score": 0.00023958414676599203,
+          "dimensions_covered": 0
+        },
+        "d4f01b54-faf7-4946-ab2b-3d39061cf9ae": {
+          "strength": "Weak",
+          "score": 0.0002173718065023422,
+          "dimensions_covered": 0
+        },
+        "cd1e6eb8-3ec0-4f16-9a9e-0e0290125ec4": {
+          "strength": "Weak",
+          "score": 0.00018402651767246425,
+          "dimensions_covered": 0
+        },
+        "a85b5826-f785-4349-9580-2a66a455a948": {
+          "strength": "Weak",
+          "score": 0.00013536953483708202,
+          "dimensions_covered": 0
+        },
+        "6663de5f-9665-425c-a5c0-3f3febe3fc19": {
+          "strength": "Weak",
+          "score": 9.785658912733197e-05,
+          "dimensions_covered": 0
+        },
+        "fb85a819-7201-4b92-a016-ada91c5e01ed": {
+          "strength": "Weak",
+          "score": 7.937089540064334e-05,
+          "dimensions_covered": 0
+        }
+      }
+    }
+  }
+}

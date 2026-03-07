@@ -1,4 +1,1 @@
-"""
-Evaluation module for Recall@K and performance metrics.
-Phase E - To be implemented.
-"""
+"""Evaluation module for retrieval and scoring metrics."""

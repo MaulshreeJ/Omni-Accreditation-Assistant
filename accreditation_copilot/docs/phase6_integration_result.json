@@ -1,0 +1,235 @@
+{
+  "framework": "NAAC",
+  "criterion": "3.2.1",
+  "description": "Extramural funding for research",
+  "compliance_status": "Weak",
+  "confidence_score": 0.0,
+  "coverage_ratio": 0.0,
+  "dimensions_covered": [],
+  "dimensions_missing": [],
+  "institution_evidence_available": true,
+  "evidence_count": 8,
+  "institution_evidence_count": 5,
+  "explanation": "No explanation available",
+  "gaps": [],
+  "recommendations": [],
+  "evidence_sources": [
+    {
+      "chunk_id": "fbdff8ae-f0ee-4836-9664-3b98fcfdd549",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 110,
+      "source_type": "framework",
+      "criterion": "7.1.10",
+      "framework": "NAAC",
+      "reranker_score": 0.0
+    },
+    {
+      "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+      "source_path": "NAAC_SSR_Manual_Universities.pdf",
+      "page_number": 63,
+      "source_type": "framework",
+      "criterion": "3.2.1",
+      "framework": "NAAC",
+      "reranker_score": 0.0
+    },
+    {
+      "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+      "source_path": "SSR_Evidence.pdf",
+      "page_number": 45,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "reranker_score": 0.0
+    },
+    {
+      "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+      "source_path": "SSR_Evidence.pdf",
+      "page_number": 45,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "reranker_score": 0.0
+    },
+    {
+      "chunk_id": "7f3d6d82-88ac-4521-9091-46c6869b4a90",
+      "source_path": "SSR_Evidence.pdf",
+      "page_number": 45,
+      "source_type": "institution",
+      "criterion": null,
+      "framework": "INSTITUTION",
+      "reranker_score": 0.0
+    }
+  ],
+  "full_report": {
+    "run_id": "5aba7fee-e59f-4cdf-8f4f-2dd2befb89cc",
+    "timestamp": "2026-03-06T07:43:09.029331Z",
+    "query": "What is the extramural funding for research?",
+    "framework": "NAAC",
+    "criterion": "3.2.1",
+    "metric_name": "Extramural funding for Research",
+    "confidence_score": 0.0,
+    "compliance_status": "Insufficient",
+    "dimensions_covered": [],
+    "dimensions_missing": [
+      "funding_amount",
+      "project_count",
+      "funding_agencies"
+    ],
+    "coverage_ratio": 0.0,
+    "evidence_summary": "No institutional evidence was found that directly addresses the criterion 3.2.1 for extramural funding for research. The retrieved context primarily contains framework guidelines without specific institutional data. There is a lack of documented proof from institutional records.",
+    "gaps": [
+      "funding_amount",
+      "project_count",
+      "funding_agencies",
+      "specific institutional data",
+      "documented proof from institutional records"
+    ],
+    "recommendation": "The institution should provide specific data on extramural funding for research, including the amount of funding received, the number of projects funded, and the names of funding agencies, along with documented proof from institutional records to demonstrate compliance with criterion 3.2.1.",
+    "evidence_sources": [
+      {
+        "chunk_id": "fbdff8ae-f0ee-4836-9664-3b98fcfdd549",
+        "source_path": "NAAC_SSR_Manual_Universities.pdf",
+        "page_number": 110,
+        "source_type": "framework",
+        "criterion": "7.1.10",
+        "framework": "NAAC",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "fa65bb57-986a-4e7d-afd9-2556b83b56c0",
+        "source_path": "NAAC_SSR_Manual_Universities.pdf",
+        "page_number": 63,
+        "source_type": "framework",
+        "criterion": "3.2.1",
+        "framework": "NAAC",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+        "source_path": "SSR_Evidence.pdf",
+        "page_number": 45,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+        "source_path": "SSR_Evidence.pdf",
+        "page_number": 45,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "7f3d6d82-88ac-4521-9091-46c6869b4a90",
+        "source_path": "SSR_Evidence.pdf",
+        "page_number": 45,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94",
+        "source_path": "SSR_Evidence.pdf",
+        "page_number": 45,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "3de8ab0e-da23-4b8f-aad2-8b288b693ebe",
+        "source_path": "SSR_Evidence.pdf",
+        "page_number": 45,
+        "source_type": "institution",
+        "criterion": null,
+        "framework": "INSTITUTION",
+        "reranker_score": 0.0
+      },
+      {
+        "chunk_id": "65357edd-699f-4173-a44e-af8eeb939136",
+        "source_path": "NAAC_SSR_Manual_Universities.pdf",
+        "page_number": 15,
+        "source_type": "framework",
+        "criterion": null,
+        "framework": "NAAC",
+        "reranker_score": 0.0
+      }
+    ],
+    "dimension_evidence_map": {},
+    "scoring_signals": {
+      "signals_detected": [],
+      "average_values": {
+        "numeric": 0.0,
+        "entity": 0.0,
+        "keyword": 0.0,
+        "structure": 0.0
+      }
+    },
+    "base_score": 0.0,
+    "avg_evidence_score": 0.0,
+    "avg_retrieval_score": 0.0,
+    "latency_ms": 570.95,
+    "num_chunks_analyzed": 8
+  },
+  "dimension_grounding": [],
+  "gaps_identified": [
+    {
+      "gap_type": "low_coverage",
+      "severity": "high",
+      "description": "Low dimension coverage: 0.0%",
+      "coverage_ratio": 0.0,
+      "recommendation": "Expand evidence to cover more required dimensions"
+    },
+    {
+      "gap_type": "low_confidence",
+      "severity": "medium",
+      "description": "Low confidence score: 0.0%",
+      "confidence_score": 0.0,
+      "recommendation": "Provide more detailed or higher-quality evidence"
+    },
+    {
+      "gap_type": "weak_evidence",
+      "severity": "medium",
+      "description": "Weak evidence quality: 0.0%",
+      "evidence_quality": 0.0,
+      "recommendation": "Improve evidence specificity and relevance"
+    }
+  ],
+  "evidence_strength": {
+    "overall_strength": "Weak",
+    "strong_count": 0,
+    "moderate_count": 0,
+    "weak_count": 5,
+    "per_chunk_strength": {
+      "7d2a8819-b145-407c-b999-b2d612e2f31f": {
+        "strength": "Weak",
+        "score": 0.003041384741663933,
+        "dimensions_covered": 0
+      },
+      "13a11009-9259-4066-b882-aecee6810184": {
+        "strength": "Weak",
+        "score": 0.0020900971256196496,
+        "dimensions_covered": 0
+      },
+      "7f3d6d82-88ac-4521-9091-46c6869b4a90": {
+        "strength": "Weak",
+        "score": 0.0016518290620297193,
+        "dimensions_covered": 0
+      },
+      "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94": {
+        "strength": "Weak",
+        "score": 0.0008316847030073405,
+        "dimensions_covered": 0
+      },
+      "3de8ab0e-da23-4b8f-aad2-8b288b693ebe": {
+        "strength": "Weak",
+        "score": 0.000488738960120827,
+        "dimensions_covered": 0
+      }
+    }
+  }
+}

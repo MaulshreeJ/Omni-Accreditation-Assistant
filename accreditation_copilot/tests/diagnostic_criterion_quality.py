@@ -100,6 +100,8 @@ def check_321_content_alignment(db_path: str):
 
 def find_321_keyword(db_path: str):
     """Find all chunks containing '3.2.1' keyword regardless of label."""
+    import re
+    
     print("\n" + "=" * 80)
     print("3.2.1 KEYWORD SEARCH (REGARDLESS OF LABEL)")
     print("=" * 80)
@@ -107,27 +109,35 @@ def find_321_keyword(db_path: str):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
-    # Search for '3.2.1' in text
+    # Get all chunks
     cursor.execute("""
         SELECT chunk_id, criterion, text, page
         FROM chunks
-        WHERE text LIKE '%3.2.1%'
         ORDER BY page
     """)
     
     results = cursor.fetchall()
     
-    print(f"\nFound {len(results)} chunks containing '3.2.1' keyword")
+    # Use word boundary regex to avoid substring matches
+    pattern = re.compile(r'\b3\.2\.1\b')
     
+    matched_chunks = []
     for chunk_id, criterion, text, page in results:
+        if pattern.search(text):
+            matched_chunks.append((chunk_id, criterion, text, page))
+    
+    print(f"\nFound {len(matched_chunks)} chunks containing '3.2.1' keyword")
+    
+    for chunk_id, criterion, text, page in matched_chunks:
         print(f"\n{'='*60}")
         print(f"Chunk ID: {chunk_id}")
         print(f"Label: {criterion}")
         print(f"Page: {page}")
         
         # Find context around '3.2.1'
-        idx = text.find('3.2.1')
-        if idx != -1:
+        match = pattern.search(text)
+        if match:
+            idx = match.start()
             start = max(0, idx - 100)
             end = min(len(text), idx + 200)
             context = text[start:end]
@@ -140,7 +150,7 @@ def find_321_keyword(db_path: str):
             print(f"⚠️ Label mismatch: labeled as '{criterion}' but contains '3.2.1'")
     
     conn.close()
-    return results
+    return matched_chunks
 
 
 def run_full_diagnostic():

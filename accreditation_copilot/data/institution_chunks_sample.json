@@ -1,0 +1,110 @@
+{
+  "source": "SSR_Evidence.pdf",
+  "total_chunks": 5,
+  "table_row_chunks": 4,
+  "paragraph_chunks": 1,
+  "chunks": [
+    {
+      "chunk_id": "13a11009-9259-4066-b882-aecee6810184",
+      "text": "Year: 2022-23\nProject: AI in Education Research\nAgency: DST\nFunding: ₹24.5 Lakhs\nDuration: 2 years",
+      "structured_data": {
+        "year": "2022-23",
+        "project_title": "AI in Education Research",
+        "agency": "DST",
+        "funding_lakhs": "24.5",
+        "duration": "2 years"
+      },
+      "chunk_type": "table_row",
+      "source_type": "institution",
+      "doc_type": "institutional",
+      "evidence_type": "table_row",
+      "evidence_weight": 1.2,
+      "table_id": "SSR_Evidence_p45_t2",
+      "row_id": 0,
+      "page_number": 45,
+      "source_path": "SSR_Evidence.pdf",
+      "framework": null,
+      "criterion": null
+    },
+    {
+      "chunk_id": "7f3d6d82-88ac-4521-9091-46c6869b4a90",
+      "text": "Year: 2023-24\nProject: ML for Healthcare\nAgency: SERB\nFunding: ₹18.2 Lakhs\nDuration: 3 years",
+      "structured_data": {
+        "year": "2023-24",
+        "project_title": "ML for Healthcare",
+        "agency": "SERB",
+        "funding_lakhs": "18.2",
+        "duration": "3 years"
+      },
+      "chunk_type": "table_row",
+      "source_type": "institution",
+      "doc_type": "institutional",
+      "evidence_type": "table_row",
+      "evidence_weight": 1.2,
+      "table_id": "SSR_Evidence_p45_t2",
+      "row_id": 1,
+      "page_number": 45,
+      "source_path": "SSR_Evidence.pdf",
+      "framework": null,
+      "criterion": null
+    },
+    {
+      "chunk_id": "3de8ab0e-da23-4b8f-aad2-8b288b693ebe",
+      "text": "Year: 2023-24\nProject: Data Science for Agriculture\nAgency: DBT\nFunding: ₹32.0 Lakhs\nDuration: 2 years",
+      "structured_data": {
+        "year": "2023-24",
+        "project_title": "Data Science for Agriculture",
+        "agency": "DBT",
+        "funding_lakhs": "32.0",
+        "duration": "2 years"
+      },
+      "chunk_type": "table_row",
+      "source_type": "institution",
+      "doc_type": "institutional",
+      "evidence_type": "table_row",
+      "evidence_weight": 1.2,
+      "table_id": "SSR_Evidence_p45_t2",
+      "row_id": 2,
+      "page_number": 45,
+      "source_path": "SSR_Evidence.pdf",
+      "framework": null,
+      "criterion": null
+    },
+    {
+      "chunk_id": "c012e5c7-b266-4f85-b6fb-1ac4b2b59a94",
+      "text": "Year: 2024-25\nProject: IoT in Smart Cities\nAgency: ICSSR\nFunding: ₹15.8 Lakhs\nDuration: 1 year",
+      "structured_data": {
+        "year": "2024-25",
+        "project_title": "IoT in Smart Cities",
+        "agency": "ICSSR",
+        "funding_lakhs": "15.8",
+        "duration": "1 year"
+      },
+      "chunk_type": "table_row",
+      "source_type": "institution",
+      "doc_type": "institutional",
+      "evidence_type": "table_row",
+      "evidence_weight": 1.2,
+      "table_id": "SSR_Evidence_p45_t2",
+      "row_id": 3,
+      "page_number": 45,
+      "source_path": "SSR_Evidence.pdf",
+      "framework": null,
+      "criterion": null
+    },
+    {
+      "chunk_id": "7d2a8819-b145-407c-b999-b2d612e2f31f",
+      "text": "The institution has received significant extramural funding for research projects during the assessment period. The Department of Science and Technology (DST) sanctioned Rs. 24.5 lakhs for AI in Education Research project in 2022-23. Additionally, SERB provided Rs. 18.2 lakhs for ML for Healthcare research spanning 3 years. The Department of Biotechnology (DBT) funded Data Science for Agriculture with Rs. 32.0 lakhs. Most recently, ICSSR sanctioned Rs. 15.8 lakhs for IoT in Smart Cities research.",
+      "structured_data": {},
+      "chunk_type": "paragraph",
+      "source_type": "institution",
+      "doc_type": "institutional",
+      "evidence_type": "paragraph",
+      "evidence_weight": 1.0,
+      "page_number": 45,
+      "source_path": "SSR_Evidence.pdf",
+      "framework": null,
+      "criterion": null
+    }
+  ]
+}

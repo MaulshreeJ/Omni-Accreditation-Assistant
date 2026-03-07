@@ -26,20 +26,22 @@ NAAC_KI_PATTERN = re.compile(
     r'Key\s+Indicator\s*[-–]\s*([1-7]\.\d{1,2})\b'
 )
 
-# NBA Header Patterns (unchanged for now)
-NBA_HEADER_PATTERNS = [
-    r'(?m)^[\s]*Criterion\s+(\d+)\b',
-    r'(?m)^[\s]*(PO\d+)\b',
-    r'(?m)^[\s]*(PEO\d+)\b',
-    r'(?m)^[\s]*(C\d+)\b',
-]
+# NBA Header Patterns
+NBA_CRITERION_PATTERN = re.compile(
+    r'Criterion\s+(\d+)\s*:'
+)
+
+NBA_SHORT_CODE_PATTERN = re.compile(
+    r'\bC(\d+)\b'
+)
 
 
 def find_criterion_boundaries(text: str, framework: str) -> List[Tuple[int, str]]:
     """
     Find all metric-level criterion boundaries in text.
     
-    CRITICAL: Only X.Y.Z QnM headers create boundaries.
+    CRITICAL: Only X.Y.Z QnM headers create boundaries for NAAC.
+    Only C# headers create boundaries for NBA.
     No normalization, no inference - direct match only.
     
     Returns:
@@ -66,23 +68,40 @@ def find_criterion_boundaries(text: str, framework: str) -> List[Tuple[int, str]
             seen_positions.append(pos)
     
     elif framework == "NBA":
-        # NBA logic unchanged
-        for pattern in NBA_HEADER_PATTERNS:
-            for match in re.finditer(pattern, text):
-                pos = match.start()
-                
-                if any(abs(pos - p) < 10 for p in seen_positions):
-                    continue
-                
-                raw_id = match.group(1) if match.lastindex else None
-                if not raw_id:
-                    continue
-                
-                if not re.match(r'^(C\d+|PO\d+|PEO\d+|PSO\d+|CO\d+)$', raw_id):
-                    continue
-                
-                boundaries.append((pos, raw_id))
-                seen_positions.append(pos)
+        # Detect "Criterion #:" headers
+        for match in NBA_CRITERION_PATTERN.finditer(text):
+            pos = match.start()
+            criterion_num = match.group(1)
+            criterion = f"C{criterion_num}"
+            
+            # Validate: only C1-C10 are valid NBA criteria
+            if not (1 <= int(criterion_num) <= 10):
+                continue
+            
+            # Deduplicate only extremely close matches (within 10 chars)
+            if any(abs(pos - p) < 10 for p in seen_positions):
+                continue
+            
+            boundaries.append((pos, criterion))
+            seen_positions.append(pos)
+        
+        # Detect "C#" short code (word boundary)
+        # Only if not already detected by Criterion pattern
+        for match in NBA_SHORT_CODE_PATTERN.finditer(text):
+            pos = match.start()
+            criterion_num = match.group(1)
+            criterion = f"C{criterion_num}"
+            
+            # Validate: only C1-C10 are valid NBA criteria
+            if not (1 <= int(criterion_num) <= 10):
+                continue
+            
+            # Deduplicate only extremely close matches (within 10 chars)
+            if any(abs(pos - p) < 10 for p in seen_positions):
+                continue
+            
+            boundaries.append((pos, criterion))
+            seen_positions.append(pos)
     
     # Sort by position
     boundaries.sort(key=lambda x: x[0])
@@ -370,12 +389,12 @@ def validate_no_cross_metric_contamination(db_path: str) -> bool:
     conn.close()
     
     if violations:
-        print("❌ CROSS-METRIC CONTAMINATION DETECTED:")
+        print("CROSS-METRIC CONTAMINATION DETECTED:")
         for chunk_id, labeled, found in violations:
             print(f"  Chunk {chunk_id[:8]}... labeled '{labeled}' contains header '{found}'")
         return False
     
-    print("✅ PASS: Zero cross-metric contamination")
+    print("[PASS] Zero cross-metric contamination")
     return True
 
 
