@@ -26,10 +26,21 @@ async def upload_files(files: List[UploadFile] = File(...)):
     Files are saved to data/raw_docs/ for ingestion.
     
     FIX 4: Validates file type and size before processing.
+    FIX: Clears old files before uploading new ones to ensure fresh ingestion.
     """
     responses = []
     upload_dir = Path(__file__).parent.parent.parent / "data" / "raw_docs"
     upload_dir.mkdir(parents=True, exist_ok=True)
+    
+    # CRITICAL FIX: Delete all existing PDFs before uploading new ones
+    # This ensures each audit uses only the newly uploaded file
+    print("[UPLOAD] Clearing old institution documents...")
+    for old_file in upload_dir.glob("*.pdf"):
+        try:
+            old_file.unlink()
+            print(f"  Deleted: {old_file.name}")
+        except Exception as e:
+            print(f"  Warning: Could not delete {old_file.name}: {e}")
     
     # FIX 4: Validation constants
     ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg"}
@@ -91,6 +102,8 @@ async def ingest_uploaded_files():
     """
     Trigger ingestion pipeline for uploaded institution files.
     Runs PDF processing, chunking, and indexing for institutional documents.
+    
+    CRITICAL: Clears old indexes, database, AND AUDIT CACHE before ingesting to ensure fresh data.
     """
     try:
         # Import institution ingestion runner
@@ -102,6 +115,56 @@ async def ingest_uploaded_files():
         
         print(f"[INGESTION] Starting ingestion from: {raw_docs_dir}")
         print(f"[INGESTION] Directory exists: {raw_docs_dir.exists()}")
+        
+        # CRITICAL FIX: Clear old institution indexes and database entries
+        print("[INGESTION] Clearing old institution data...")
+        indexes_dir = project_root / "indexes" / "institution"
+        if indexes_dir.exists():
+            for index_file in indexes_dir.glob("institution*"):
+                try:
+                    index_file.unlink()
+                    print(f"  Deleted: {index_file.name}")
+                except Exception as e:
+                    print(f"  Warning: Could not delete {index_file.name}: {e}")
+        
+        # Clear institution chunks from database
+        import sqlite3
+        db_path = project_root / "data" / "metadata.db"
+        if db_path.exists():
+            try:
+                conn = sqlite3.connect(str(db_path))
+                cursor = conn.execute("DELETE FROM chunks WHERE source_type='institution'")
+                deleted_count = cursor.rowcount
+                conn.commit()
+                conn.close()
+                print(f"  Deleted {deleted_count} old institution chunks from database")
+            except Exception as e:
+                print(f"  Warning: Could not clear database: {e}")
+        
+        # CRITICAL FIX: Clear audit cache to prevent stale results
+        print("[INGESTION] Clearing audit cache...")
+        from cache.audit_cache import AuditCache
+        cache = AuditCache()
+        cache.clear_cache()
+        print("  Audit cache cleared")
+        
+        # CRITICAL FIX: Clear IndexLoader cache to force reload of institution indexes
+        print("[INGESTION] Clearing IndexLoader cache...")
+        from retrieval.index_loader import IndexLoader
+        # Create a temporary instance just to clear the cache
+        # Note: This won't affect existing instances, but we need to restart
+        # the auditor to pick up new indexes
+        temp_loader = IndexLoader()
+        temp_loader.clear_institution_cache()
+        
+        # CRITICAL: Reset the global auditor instance to force reload
+        # This ensures the next audit uses fresh indexes
+        from api.routers.audit import get_auditor
+        import api.routers.audit as audit_module
+        audit_module.auditor = None
+        audit_module.model_manager = None
+        audit_module.cache = None
+        print("  Auditor instance reset - will reload on next audit")
         
         # Run ingestion for institution documents in data/raw_docs/
         result = run_institution_ingestion(raw_docs_dir=str(raw_docs_dir))

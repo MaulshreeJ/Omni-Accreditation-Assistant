@@ -280,6 +280,28 @@ class IndexLoader:
     def close(self):
         """Close database connection."""
         self.metadata_store.close()
+    
+    def clear_institution_cache(self):
+        """
+        Clear cached institution indexes from memory.
+        Call this after ingesting new institution documents to force reload.
+        """
+        # Clear institution-related caches
+        keys_to_remove = [k for k in self.faiss_indices.keys() if 'institution' in k]
+        for key in keys_to_remove:
+            del self.faiss_indices[key]
+            if key in self.faiss_mappings:
+                del self.faiss_mappings[key]
+        
+        keys_to_remove = [k for k in self.bm25_indices.keys() if 'institution' in k]
+        for key in keys_to_remove:
+            del self.bm25_indices[key]
+            if key in self.bm25_mappings:
+                del self.bm25_mappings[key]
+            if key in self.bm25_tokenized:
+                del self.bm25_tokenized[key]
+        
+        print("[IndexLoader] Institution index cache cleared")
 
 
 # Test function

@@ -15,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
 
-from api.routers import audit, upload, metrics
+from api.routers import audit, upload, metrics, chatbot
 
 
 # Custom JSON encoder for NumPy types
@@ -55,6 +55,7 @@ app.add_middleware(
 app.include_router(audit.router, prefix="/api/audit", tags=["audit"])
 app.include_router(upload.router, prefix="/api/upload", tags=["upload"])
 app.include_router(metrics.router, prefix="/api/metrics", tags=["metrics"])
+app.include_router(chatbot.router, prefix="/api/chatbot", tags=["chatbot"])
 
 @app.get("/")
 async def root():

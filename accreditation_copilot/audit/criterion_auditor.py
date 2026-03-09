@@ -67,13 +67,13 @@ def audit_timeout(seconds: int):
 class CriterionAuditor:
     """Audit a single criterion against institutional evidence."""
     
-    def __init__(self, model_manager=None, enable_cache=True, cache_ttl_hours=24):
+    def __init__(self, model_manager=None, enable_cache=False, cache_ttl_hours=24):
         """
         Initialize auditor with pipeline components.
         
         Args:
             model_manager: Optional ModelManager instance (for testing)
-            enable_cache: Whether to enable audit caching (default: True)
+            enable_cache: Whether to enable audit caching (default: False - DISABLED for dynamic data)
             cache_ttl_hours: Cache time-to-live in hours (default: 24)
         """
         # Get shared model manager

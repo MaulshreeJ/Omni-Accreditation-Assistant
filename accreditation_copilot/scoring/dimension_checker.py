@@ -34,6 +34,10 @@ class DimensionChecker:
         self.metric_maps_dir = metric_maps_dir
         self.naac_map = self._load_yaml('naac_metric_map.yaml')
         self.nba_map = self._load_yaml('nba_metric_map.yaml')
+        
+        # Database path for loading text
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        self.db_path = os.path.join(os.path.dirname(current_dir), 'data', 'metadata.db')
     
     def _load_yaml(self, filename: str) -> Dict:
         """Load YAML metric map."""
@@ -44,6 +48,22 @@ class DimensionChecker:
         except FileNotFoundError:
             print(f"Warning: Metric map not found: {filepath}")
             return {}
+    
+    def _load_text_from_db(self, chunk_id: str) -> str:
+        """Load chunk text from database if not in result."""
+        import sqlite3
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute('SELECT text FROM chunks WHERE chunk_id = ?', (chunk_id,))
+            row = cursor.fetchone()
+            conn.close()
+            if row:
+                return row[0]
+            return ''
+        except Exception as e:
+            print(f"[DimensionChecker] Error loading text for {chunk_id}: {e}")
+            return ''
     
     def check(self, results: List[Dict[str, Any]], framework: str, criterion: str) -> Dict[str, Any]:
         """
@@ -77,6 +97,23 @@ class DimensionChecker:
         # MILESTONE 5: Filter to only institution chunks for evidence counting
         institution_chunks = [r for r in results if r.get('source_type') == 'institution']
         
+        # DEBUG: Log retrieval result structure
+        if institution_chunks:
+            first_chunk = institution_chunks[0]
+            print(f"[DimensionChecker DEBUG] First chunk keys: {list(first_chunk.keys())}")
+            print(f"[DimensionChecker DEBUG] Has 'text': {'text' in first_chunk}")
+            print(f"[DimensionChecker DEBUG] Has 'child_text': {'child_text' in first_chunk}")
+            print(f"[DimensionChecker DEBUG] Has 'parent_context': {'parent_context' in first_chunk}")
+            
+            # Check what text we can extract
+            if 'child_text' in first_chunk:
+                sample_text = first_chunk.get('child_text', '')[:100]
+            elif 'text' in first_chunk:
+                sample_text = first_chunk.get('text', '')[:100]
+            else:
+                sample_text = "NO TEXT FIELD FOUND"
+            print(f"[DimensionChecker DEBUG] Sample text: {sample_text}")
+        
         # If no institution evidence, coverage_ratio = 0
         if not institution_chunks:
             # Return zero coverage but keep framework chunks for LLM context
@@ -102,9 +139,28 @@ class DimensionChecker:
             chunk_id = result.get('chunk_id', 'unknown')
             per_chunk_hits[chunk_id] = []
             
-            # Combine child and parent text for checking
-            text = (result.get('child_text', '') + ' ' + 
-                   result.get('parent_context', '')).lower()
+            # FIX: Handle multiple text formats and load from DB if needed
+            text = ''
+            if 'child_text' in result:
+                # Expanded format (from parent_expander)
+                text = (result.get('child_text', '') + ' ' + result.get('parent_context', '')).lower()
+            elif 'text' in result and result.get('text'):
+                # Non-expanded format with text already loaded
+                text = result.get('text', '').lower()
+            else:
+                # Text not in result - load from database
+                text = self._load_text_from_db(chunk_id).lower()
+            
+            # DEBUG: Log first chunk text to verify content
+            if len(per_chunk_hits) == 1:
+                print(f"[DimensionChecker DEBUG] First chunk text (200 chars): {text[:200]}")
+                print(f"[DimensionChecker DEBUG] Text length: {len(text)}")
+                print(f"[DimensionChecker DEBUG] Text source: {'child_text' if 'child_text' in result else 'text' if 'text' in result else 'database'}")
+            
+            # Skip empty text
+            if not text or len(text) < 10:
+                print(f"[DimensionChecker WARNING] Skipping chunk {chunk_id} - empty or too short text")
+                continue
             
             # Check each dimension against THIS chunk
             for dimension in dimensions:

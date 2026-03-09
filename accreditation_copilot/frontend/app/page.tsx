@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import QueryPanel from "@/components/QueryPanel";
 import AuditDashboard from "@/components/AuditDashboard";
@@ -13,13 +14,44 @@ import GapAnalysisVisualizer from "@/components/GapAnalysisVisualizer";
 import { Sparkles } from "lucide-react";
 
 export default function Home() {
+  const router = useRouter();
   const [auditResult, setAuditResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    // Check authentication
+    const auth = localStorage.getItem('isAuthenticated');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    } else {
+      router.push('/login');
+    }
+    setCheckingAuth(false);
+  }, [router]);
 
   const handleAuditComplete = (result: any) => {
     setAuditResult(result);
     setLoading(false);
   };
+
+  // Show loading while checking auth
+  if (checkingAuth) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-background">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-lg font-medium gradient-text">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="flex h-screen bg-background overflow-hidden">
