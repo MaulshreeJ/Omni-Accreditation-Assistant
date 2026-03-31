@@ -9,8 +9,8 @@
 <br>
 
 🌐 **Live Demo:** http://13.232.129.54:3000
-🎬 **Video Demo:** https://www.youtube.com/watch?v=B8WUaarxMPM
-💻 **Repository:** https://github.com/Effec77/Omni-Accreditation-Assistant
+
+💻 **Repository:** https://github.com/MaulshreeJ/Omni-Accreditation-Assistant
 
 </div>
 
